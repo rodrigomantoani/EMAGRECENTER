@@ -1,0 +1,6 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" rx="16" fill="#f5f0eb"/>
+  <circle cx="100" cy="90" r="35" fill="#779d7c" opacity="0.2"/>
+  <circle cx="100" cy="90" r="20" fill="#779d7c" opacity="0.3"/>
+  <text x="100" y="160" font-family="Arial" font-size="12" fill="#38312c" text-anchor="middle">Suporte</text>
+</svg>
