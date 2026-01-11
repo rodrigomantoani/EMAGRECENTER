@@ -18,15 +18,17 @@ export function ResultPage({ question }: ResultPageProps) {
   const [showPreferenceModal, setShowPreferenceModal] = useState(false);
 
   // Determina a preferência de medicação do usuário
-  const preferenciaMedicacao = answers.preferenciaMedicacao || 'wegovy';
-  const isMounjaro = preferenciaMedicacao === 'mounjaro';
+  // Default is tirzepatida (mounjaro), unless user explicitly chose wegovy/semaglutida
+  const preferenciaMedicacao = answers.preferenciaMedicacao || 'mounjaro';
+  const isSemaglutida = preferenciaMedicacao === 'wegovy';
 
   // Generate checkout URL with user data
   const getCheckoutUrl = () => {
     const baseUrl = 'https://www.helixonlabs.com/checkout';
 
     // Map medication preference to product ID
-    const productId = isMounjaro ? 'tirzepatida-20mg' : 'semaglutida-5mg';
+    // Default is tirzepatida-60mg, unless user explicitly chose semaglutida/wegovy
+    const productId = preferenciaMedicacao === 'wegovy' ? 'semaglutida-5mg' : 'tirzepatida-60mg';
 
     // Extract first name and last name from full name
     const fullName = answers.nome || '';
@@ -56,21 +58,23 @@ export function ResultPage({ question }: ResultPageProps) {
     window.location.href = getCheckoutUrl();
   };
 
-  const medicationInfo = isMounjaro
+  const medicationInfo = isSemaglutida
     ? {
-        name: 'Mounjaro 5.0mg',
-        subtitle: 'Exemplo: Mounjaro',
-        originalPrice: 'R$ 1.890,00',
+        name: 'Semaglutida 5mg',
+        subtitle: 'Do mesmo fabricante do Ozempic®',
+        originalPrice: 'R$ 699,99',
         installments: '2x de',
-        installmentPrice: 'R$ 850,50',
+        installmentPrice: 'R$ 199,99',
+        totalPrice: 'R$ 399,99',
         monthlyNote: 'no primeiro mês*',
       }
     : {
-        name: 'Wegovy 1mg',
-        subtitle: 'Do mesmo fabricante do Ozempic®',
-        originalPrice: 'R$ 1.259,00',
+        name: 'Tirzepatida 60mg',
+        subtitle: 'Até 22,5% de perda de peso em estudos clínicos',
+        originalPrice: 'R$ 2.799,99',
         installments: '2x de',
-        installmentPrice: 'R$ 566,55',
+        installmentPrice: 'R$ 899,99',
+        totalPrice: 'R$ 1.799,99',
         monthlyNote: 'no primeiro mês*',
       };
 
