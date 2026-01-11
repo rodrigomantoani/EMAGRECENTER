@@ -13,12 +13,16 @@ interface GoalWeightQuestionProps {
 export function GoalWeightQuestion({ question }: GoalWeightQuestionProps) {
   const { answers, setAnswers, nextStep } = useQuiz();
 
-  // Sugere peso meta como 80% do peso atual
+  // Calculate ideal weight based on BMI of 22 (healthy range)
   const pesoAtual = answers.peso || 80;
-  const sugestao = Math.round(pesoAtual * 0.85);
+  const alturaM = (answers.altura || 170) / 100; // altura in meters
+  const pesoIdeal = Math.round(22 * alturaM * alturaM);
+
+  // Use ideal weight as default, but ensure it's less than current weight
+  const sugestao = Math.min(pesoIdeal, pesoAtual - 1);
 
   const [pesoMeta, setPesoMeta] = useState(answers.pesoMeta || sugestao);
-  const [changed, setChanged] = useState(!!answers.pesoMeta);
+  const [changed, setChanged] = useState(true); // Always enabled by default
 
   const handleChange = (value: number) => {
     setPesoMeta(value);
