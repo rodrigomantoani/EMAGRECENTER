@@ -1,6 +1,0 @@
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="200" rx="16" fill="#f5f0eb"/>
-  <circle cx="100" cy="80" r="40" fill="#779d7c" opacity="0.2"/>
-  <rect x="70" y="130" width="60" height="40" rx="8" fill="#779d7c" opacity="0.3"/>
-  <text x="100" y="160" font-family="Arial" font-size="12" fill="#38312c" text-anchor="middle">Gestão</text>
-</svg>
