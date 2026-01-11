@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { QuizProvider, useQuiz } from '@/store/quiz-store';
 import { quizSteps, TOTAL_STEPS } from '@/data/quiz-steps';
 import { QuizProgress } from './QuizProgress';
@@ -23,8 +24,70 @@ import { BirthDateQuestion } from './BirthDateQuestion';
 import Image from 'next/image';
 /* eslint-disable @next/next/no-img-element */
 
+// Map region names to state codes
+const REGION_TO_STATE: Record<string, string> = {
+  'Acre': 'AC',
+  'Alagoas': 'AL',
+  'Amapá': 'AP',
+  'Amazonas': 'AM',
+  'Bahia': 'BA',
+  'Ceará': 'CE',
+  'Distrito Federal': 'DF',
+  'Espírito Santo': 'ES',
+  'Goiás': 'GO',
+  'Maranhão': 'MA',
+  'Mato Grosso': 'MT',
+  'Mato Grosso do Sul': 'MS',
+  'Minas Gerais': 'MG',
+  'Pará': 'PA',
+  'Paraíba': 'PB',
+  'Paraná': 'PR',
+  'Pernambuco': 'PE',
+  'Piauí': 'PI',
+  'Rio de Janeiro': 'RJ',
+  'Rio Grande do Norte': 'RN',
+  'Rio Grande do Sul': 'RS',
+  'Rondônia': 'RO',
+  'Roraima': 'RR',
+  'Santa Catarina': 'SC',
+  'São Paulo': 'SP',
+  'Sergipe': 'SE',
+  'Tocantins': 'TO',
+};
+
 function QuizContent() {
-  const { currentStep, prevStep } = useQuiz();
+  const { currentStep, prevStep, answers, setAnswer } = useQuiz();
+
+  // Fetch user's state from IP on mount
+  useEffect(() => {
+    // Skip if already has estado
+    if (answers.estado) return;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+
+    fetch('https://ipinfo.io/json?token=496744718c24a3', { signal: controller.signal })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.country === 'BR' && data.region) {
+          const stateCode = REGION_TO_STATE[data.region];
+          if (stateCode) {
+            setAnswer('estado', stateCode);
+          }
+        }
+      })
+      .catch(() => {
+        // Silently fail - user can select manually
+      })
+      .finally(() => {
+        clearTimeout(timeoutId);
+      });
+
+    return () => {
+      controller.abort();
+      clearTimeout(timeoutId);
+    };
+  }, [answers.estado, setAnswer]);
   const step = quizSteps[currentStep];
 
   if (!step) return null;

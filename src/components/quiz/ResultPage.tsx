@@ -21,6 +21,41 @@ export function ResultPage({ question }: ResultPageProps) {
   const preferenciaMedicacao = answers.preferenciaMedicacao || 'wegovy';
   const isMounjaro = preferenciaMedicacao === 'mounjaro';
 
+  // Generate checkout URL with user data
+  const getCheckoutUrl = () => {
+    const baseUrl = 'https://www.helixonlabs.com/checkout';
+
+    // Map medication preference to product ID
+    const productId = isMounjaro ? 'tirzepatida-20mg' : 'semaglutida-5mg';
+
+    // Extract first name and last name from full name
+    const fullName = answers.nome || '';
+    const nameParts = fullName.trim().split(' ');
+    const firstName = answers.primeiroNome || nameParts[0] || '';
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
+    const params = new URLSearchParams({
+      product: productId,
+      nome: firstName,
+      sobrenome: lastName,
+      email: answers.email || '',
+      telefone: answers.whatsapp || '',
+      cpf: '',
+      cep: '',
+      rua: '',
+      numero: '',
+      bairro: '',
+      cidade: '',
+      estado: answers.estado || '',
+    });
+
+    return `${baseUrl}?${params.toString()}`;
+  };
+
+  const handleCheckout = () => {
+    window.location.href = getCheckoutUrl();
+  };
+
   const medicationInfo = isMounjaro
     ? {
         name: 'Mounjaro 5.0mg',
@@ -275,7 +310,10 @@ export function ResultPage({ question }: ResultPageProps) {
             </div>
 
             {/* CTA Button */}
-            <Button className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-xl min-h-[56px]">
+            <Button
+              onClick={handleCheckout}
+              className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-xl min-h-[56px]"
+            >
               Obter meu plano
             </Button>
 
@@ -345,7 +383,10 @@ export function ResultPage({ question }: ResultPageProps) {
 
         {/* CTA Sticky */}
         <div className="mt-6">
-          <Button className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-xl min-h-[56px]">
+          <Button
+            onClick={handleCheckout}
+            className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-xl min-h-[56px]"
+          >
             Obter meu plano
           </Button>
         </div>
@@ -569,7 +610,10 @@ export function ResultPage({ question }: ResultPageProps) {
         </div>
 
         <div className="mt-6">
-          <Button className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-xl min-h-[56px]">
+          <Button
+            onClick={handleCheckout}
+            className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-xl min-h-[56px]"
+          >
             Obter meu plano
           </Button>
         </div>
@@ -711,7 +755,10 @@ export function ResultPage({ question }: ResultPageProps) {
         </div>
 
         <div className="mt-6">
-          <Button className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-xl min-h-[56px]">
+          <Button
+            onClick={handleCheckout}
+            className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-xl min-h-[56px]"
+          >
             Obter meu plano
           </Button>
         </div>
@@ -794,7 +841,10 @@ export function ResultPage({ question }: ResultPageProps) {
       {/* ============================================ */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border p-4 shadow-lg z-50">
         <div className="max-w-3xl mx-auto">
-          <Button className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base rounded-xl min-h-[56px]">
+          <Button
+            onClick={handleCheckout}
+            className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-6 text-base rounded-xl min-h-[56px]"
+          >
             Obter meu plano
           </Button>
           <p className="text-xs text-muted-foreground text-center mt-2">

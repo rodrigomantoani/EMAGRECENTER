@@ -301,9 +301,9 @@ export const quizSteps: QuizStep[] = [
       fields: [
         {
           id: 'nome',
-          label: 'Seu nome',
+          label: 'Seu nome completo',
           type: 'text',
-          placeholder: 'Digite seu nome',
+          placeholder: 'Digite seu nome completo',
           required: true,
         },
       ],
