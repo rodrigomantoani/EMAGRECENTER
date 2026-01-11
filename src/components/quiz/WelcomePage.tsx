@@ -14,7 +14,7 @@ export function WelcomePage({ question }: WelcomePageProps) {
   const { nextStep } = useQuiz();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 sm:px-6 lg:px-8 pb-8 text-center">
+    <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 sm:px-6 lg:px-8 pb-8 xl:pb-16 text-center">
       {/* Profile Image */}
       {question.profileImage && (
         <div className="mb-4 sm:mb-6">
