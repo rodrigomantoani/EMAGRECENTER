@@ -9,16 +9,14 @@ import Image from 'next/image';
 
 function RecomendacaoContent() {
   const router = useRouter();
-  const { answers, currentStep, isHydrated, resetQuiz } = useQuiz();
+  const { answers, isQuizCompleted, isHydrated, resetQuiz } = useQuiz();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (!isHydrated) return;
 
-    // Only allow access if quiz was completed (reached the result step)
-    const quizCompleted = currentStep >= TOTAL_STEPS - 1;
-
-    if (!quizCompleted) {
+    // Only allow access if quiz was completed
+    if (!isQuizCompleted) {
       // Build redirect URL with md param if user had medication preference
       const mdParam = answers.preferenciaMedicacao === 'mounjaro' ? 't' :
                       answers.preferenciaMedicacao === 'wegovy' ? 's' : null;
@@ -33,7 +31,7 @@ function RecomendacaoContent() {
     }
 
     setIsReady(true);
-  }, [isHydrated, currentStep, answers.preferenciaMedicacao, resetQuiz, router]);
+  }, [isHydrated, isQuizCompleted, answers.preferenciaMedicacao, resetQuiz, router]);
 
   if (!isReady) {
     return (

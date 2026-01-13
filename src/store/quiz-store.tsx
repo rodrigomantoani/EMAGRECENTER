@@ -8,8 +8,8 @@ import { quizSteps } from '@/data/quiz-steps';
 const STORAGE_KEY = 'emagrecenter-quiz-data';
 
 // Helper functions for localStorage
-function loadFromStorage(): { answers: QuizData; step: number } {
-  if (typeof window === 'undefined') return { answers: {}, step: 0 };
+function loadFromStorage(): { answers: QuizData; step: number; completed: boolean } {
+  if (typeof window === 'undefined') return { answers: {}, step: 0, completed: false };
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
@@ -17,18 +17,19 @@ function loadFromStorage(): { answers: QuizData; step: number } {
       return {
         answers: data.answers || {},
         step: data.step || 0,
+        completed: data.completed || false,
       };
     }
   } catch {
     // Silently fail
   }
-  return { answers: {}, step: 0 };
+  return { answers: {}, step: 0, completed: false };
 }
 
-function saveToStorage(answers: QuizData, step: number) {
+function saveToStorage(answers: QuizData, step: number, completed: boolean) {
   if (typeof window === 'undefined') return;
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, step }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, step, completed }));
   } catch {
     // Silently fail
   }
@@ -55,6 +56,7 @@ interface QuizContextType {
   answers: QuizData;
   isLoading: boolean;
   isComplete: boolean;
+  isQuizCompleted: boolean;
   progress: number;
   isHydrated: boolean;
 
@@ -87,6 +89,7 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
   const [answers, setAnswersState] = useState<QuizData>({});
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
 
   // Ref to access answers in callbacks
@@ -101,15 +104,17 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
       setAnswersState(stored.answers);
       // Don't restore step - let URL control navigation
     }
+    // Load completed flag
+    setIsQuizCompleted(stored.completed);
     setIsHydrated(true);
   }, []);
 
   // Save to localStorage whenever answers or step changes
   useEffect(() => {
     if (isHydrated) {
-      saveToStorage(answers, currentStep);
+      saveToStorage(answers, currentStep, isQuizCompleted);
     }
-  }, [answers, currentStep, isHydrated]);
+  }, [answers, currentStep, isQuizCompleted, isHydrated]);
 
   const progress = Math.round((currentStep / (totalSteps - 1)) * 100);
 
@@ -189,6 +194,7 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
 
   const completeQuiz = useCallback(() => {
     setIsComplete(true);
+    setIsQuizCompleted(true);
   }, []);
 
   const resetQuiz = useCallback(() => {
@@ -196,6 +202,7 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
     setAnswersState({});
     setIsLoading(false);
     setIsComplete(false);
+    setIsQuizCompleted(false);
     clearStorage();
   }, []);
 
@@ -207,6 +214,7 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
         answers,
         isLoading,
         isComplete,
+        isQuizCompleted,
         progress,
         isHydrated,
         isFemale,

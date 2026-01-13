@@ -66,7 +66,7 @@ function LoadingSpinner() {
 }
 
 function QuizContent() {
-  const { currentStep, prevStep, answers, setAnswer, setInitialStep, isHydrated } = useQuiz();
+  const { currentStep, prevStep, answers, setAnswer, setInitialStep, isHydrated, completeQuiz } = useQuiz();
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -117,6 +117,7 @@ function QuizContent() {
 
     // Redirect to /recomendacao when reaching the result step
     if (currentStep >= TOTAL_STEPS - 1) {
+      completeQuiz();
       router.replace('/recomendacao');
       return;
     }
