@@ -13,13 +13,13 @@ interface GoalWeightQuestionProps {
 export function GoalWeightQuestion({ question }: GoalWeightQuestionProps) {
   const { answers, setAnswers, nextStep } = useQuiz();
 
-  // Calculate ideal weight based on BMI of 22 (healthy range)
+  // Calculate suggested weight based on medication's expected weight loss
   const pesoAtual = answers.peso || 80;
-  const alturaM = (answers.altura || 170) / 100; // altura in meters
-  const pesoIdeal = Math.round(22 * alturaM * alturaM);
+  const medication = answers.preferenciaMedicacao;
 
-  // Use ideal weight as default, but ensure it's less than current weight
-  const sugestao = Math.min(pesoIdeal, pesoAtual - 1);
+  // Tirzepatida (mounjaro): 25% loss, Semaglutida (wegovy): 17% loss
+  const perdaPercentual = medication === 'mounjaro' ? 0.25 : 0.17;
+  const sugestao = Math.round(pesoAtual * (1 - perdaPercentual));
 
   const [pesoMeta, setPesoMeta] = useState(answers.pesoMeta || sugestao);
   const [changed, setChanged] = useState(true); // Always enabled by default

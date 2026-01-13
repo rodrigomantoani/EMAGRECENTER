@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { QuizProvider, useQuiz } from '@/store/quiz-store';
 import { quizSteps, TOTAL_STEPS } from '@/data/quiz-steps';
 import { QuizProgress } from './QuizProgress';
@@ -58,6 +59,17 @@ const REGION_TO_STATE: Record<string, string> = {
 
 function QuizContent() {
   const { currentStep, prevStep, answers, setAnswer } = useQuiz();
+  const searchParams = useSearchParams();
+
+  // Read medication preference from URL query param
+  useEffect(() => {
+    const mdParam = searchParams.get('md');
+    if (mdParam === 't' && !answers.preferenciaMedicacao) {
+      setAnswer('preferenciaMedicacao', 'mounjaro');
+    } else if (mdParam === 's' && !answers.preferenciaMedicacao) {
+      setAnswer('preferenciaMedicacao', 'wegovy');
+    }
+  }, [searchParams, answers.preferenciaMedicacao, setAnswer]);
 
   // Fetch user's state from IP on mount
   useEffect(() => {
@@ -226,7 +238,9 @@ function QuizContent() {
 export function QuizContainer() {
   return (
     <QuizProvider totalSteps={TOTAL_STEPS}>
-      <QuizContent />
+      <Suspense fallback={<div className="min-h-screen bg-background" />}>
+        <QuizContent />
+      </Suspense>
     </QuizProvider>
   );
 }

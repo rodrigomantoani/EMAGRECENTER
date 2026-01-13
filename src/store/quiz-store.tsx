@@ -67,8 +67,14 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
       let next = Math.min(prev + 1, totalSteps - 1);
 
       // Skip pregnancy step for males
-      const nextStepData = quizSteps[next];
+      let nextStepData = quizSteps[next];
       if (nextStepData?.id === 'gravidez' && answersRef.current.sexo === 'masculino') {
+        next = Math.min(next + 1, totalSteps - 1);
+        nextStepData = quizSteps[next];
+      }
+
+      // Skip medication preference step if already set via URL
+      if (nextStepData?.id === 'preferencia-medicacao' && answersRef.current.preferenciaMedicacao) {
         next = Math.min(next + 1, totalSteps - 1);
       }
 
@@ -80,8 +86,14 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
     setCurrentStep((prev) => {
       let prevIndex = Math.max(prev - 1, 0);
 
+      // Skip medication preference step if already set via URL when going back
+      let prevStepData = quizSteps[prevIndex];
+      if (prevStepData?.id === 'preferencia-medicacao' && answersRef.current.preferenciaMedicacao) {
+        prevIndex = Math.max(prevIndex - 1, 0);
+        prevStepData = quizSteps[prevIndex];
+      }
+
       // Skip pregnancy step for males when going back
-      const prevStepData = quizSteps[prevIndex];
       if (prevStepData?.id === 'gravidez' && answersRef.current.sexo === 'masculino') {
         prevIndex = Math.max(prevIndex - 1, 0);
       }
