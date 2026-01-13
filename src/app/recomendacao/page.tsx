@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 function RecomendacaoContent() {
   const router = useRouter();
-  const { answers, currentStep, isHydrated } = useQuiz();
+  const { answers, currentStep, isHydrated, resetQuiz } = useQuiz();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -19,13 +19,21 @@ function RecomendacaoContent() {
     const quizCompleted = currentStep >= TOTAL_STEPS - 1;
 
     if (!quizCompleted) {
-      // Redirect to quiz start if not completed
-      router.replace('/');
+      // Build redirect URL with md param if user had medication preference
+      const mdParam = answers.preferenciaMedicacao === 'mounjaro' ? 't' :
+                      answers.preferenciaMedicacao === 'wegovy' ? 's' : null;
+
+      // Reset quiz to clear localStorage and start fresh
+      resetQuiz();
+
+      // Redirect to quiz start with md param if applicable
+      const redirectUrl = mdParam ? `/?md=${mdParam}` : '/';
+      router.replace(redirectUrl);
       return;
     }
 
     setIsReady(true);
-  }, [isHydrated, currentStep, router]);
+  }, [isHydrated, currentStep, answers.preferenciaMedicacao, resetQuiz, router]);
 
   if (!isReady) {
     return (
