@@ -93,12 +93,13 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
   const answersRef = useRef<QuizData>(answers);
   answersRef.current = answers;
 
-  // Load from localStorage on mount (client-side only)
+  // Load answers from localStorage on mount (client-side only)
+  // Note: step is NOT loaded from localStorage - it comes from URL only
   useEffect(() => {
     const stored = loadFromStorage();
     if (Object.keys(stored.answers).length > 0) {
       setAnswersState(stored.answers);
-      setCurrentStep(stored.step);
+      // Don't restore step - let URL control navigation
     }
     setIsHydrated(true);
   }, []);
