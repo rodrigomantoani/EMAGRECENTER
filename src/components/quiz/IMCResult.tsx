@@ -89,49 +89,50 @@ export function IMCResult({ question }: IMCResultProps) {
       {/* IMC Display */}
       <div className="bg-white rounded-2xl border-2 border-border p-6 space-y-5">
         {/* IMC Number */}
-        <div className="text-center">
+        <div className="text-center mb-4">
           <p className="text-sm font-medium text-muted-foreground mb-2">Seu IMC</p>
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-5xl font-bold" style={{ color: classification.color }}>
-              {imc.toFixed(1)}
-            </span>
-            <span className="text-4xl">{classification.emoji}</span>
-          </div>
+          <span className="text-5xl font-bold" style={{ color: classification.color }}>
+            {imc.toFixed(1)}
+          </span>
         </div>
 
-        {/* IMC Bar */}
-        <div className="relative">
-          {/* Background gradient bar */}
-          <div
-            className="h-4 rounded-full"
-            style={{
-              background: 'linear-gradient(to right, #3B82F6 0%, #22C55E 17%, #EAB308 33%, #F97316 50%, #EF4444 67%, #DC2626 100%)',
-            }}
-          />
-
-          {/* Indicator - centralizado em cima da barra */}
-          <div
-            className="absolute top-1/2 z-10"
-            style={{
-              left: `${getIMCPosition(imc)}%`,
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            {/* Pulse ring */}
+        {/* IMC Bar Container */}
+        <div>
+          {/* Bar with indicator */}
+          <div className="relative h-4">
+            {/* Background gradient bar */}
             <div
-              className="absolute inset-0 rounded-full animate-ping"
+              className="absolute inset-0 rounded-full"
               style={{
-                backgroundColor: classification.color,
-                opacity: 0.4,
-                width: '28px',
-                height: '28px',
+                background: 'linear-gradient(to right, #3B82F6 0%, #22C55E 17%, #EAB308 33%, #F97316 50%, #EF4444 67%, #DC2626 100%)',
               }}
             />
-            {/* Main indicator */}
+
+            {/* Indicator - centralizado em cima da barra */}
             <div
-              className="relative w-7 h-7 rounded-full bg-white border-4 shadow-lg"
-              style={{ borderColor: classification.color }}
-            />
+              className="absolute z-10"
+              style={{
+                left: `${getIMCPosition(imc)}%`,
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
+            >
+              {/* Pulse ring */}
+              <div
+                className="absolute inset-0 rounded-full animate-ping"
+                style={{
+                  backgroundColor: classification.color,
+                  opacity: 0.4,
+                  width: '28px',
+                  height: '28px',
+                }}
+              />
+              {/* Main indicator */}
+              <div
+                className="relative w-7 h-7 rounded-full bg-white border-4 shadow-lg"
+                style={{ borderColor: classification.color }}
+              />
+            </div>
           </div>
 
           {/* Labels */}
