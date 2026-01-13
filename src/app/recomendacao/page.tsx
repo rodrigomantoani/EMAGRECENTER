@@ -9,23 +9,23 @@ import Image from 'next/image';
 
 function RecomendacaoContent() {
   const router = useRouter();
-  const { answers, isHydrated } = useQuiz();
+  const { answers, currentStep, isHydrated } = useQuiz();
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (!isHydrated) return;
 
-    // Check if we have minimum required data
-    const hasMinimumData = answers.nome && answers.peso && answers.altura;
+    // Only allow access if quiz was completed (reached the result step)
+    const quizCompleted = currentStep >= TOTAL_STEPS - 1;
 
-    if (!hasMinimumData) {
-      // Redirect to quiz if no data
+    if (!quizCompleted) {
+      // Redirect to quiz start if not completed
       router.replace('/');
       return;
     }
 
     setIsReady(true);
-  }, [isHydrated, answers, router]);
+  }, [isHydrated, currentStep, router]);
 
   if (!isReady) {
     return (
