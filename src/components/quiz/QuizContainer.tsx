@@ -115,6 +115,12 @@ function QuizContent() {
   useEffect(() => {
     if (!mounted || !isHydrated || !initialStepSet) return;
 
+    // Redirect to /recomendacao when reaching the result step
+    if (currentStep >= TOTAL_STEPS - 1) {
+      router.replace('/recomendacao');
+      return;
+    }
+
     // Use stored initial params instead of searchParams (which gets stale)
     const params = new URLSearchParams(initialParamsRef.current || '');
 
@@ -129,7 +135,7 @@ function QuizContent() {
     const queryString = params.toString();
     const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
     window.history.replaceState(null, '', newUrl);
-  }, [currentStep, mounted, isHydrated, initialStepSet, pathname]);
+  }, [currentStep, mounted, isHydrated, initialStepSet, pathname, router]);
 
   // Fetch user's state from IP on mount
   useEffect(() => {
