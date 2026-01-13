@@ -1,12 +1,13 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/store/quiz-store';
 import type { Question } from '@/types/quiz';
 import { ChevronDown, ChevronUp, Check, Play } from 'lucide-react';
 import { WeightLossChart } from '@/components/charts/WeightLossChart';
+import { encryptCheckoutData } from '@/lib/crypto';
 
 interface ResultPageProps {
   question: Question;
@@ -17,17 +18,37 @@ export function ResultPage({ question }: ResultPageProps) {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [showPreferenceModal, setShowPreferenceModal] = useState(false);
 
+  // Track quiz completion and identify user
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.HLX) {
+      // Identify user by email
+      if (answers.email) {
+        window.HLX.identify(answers.email);
+      }
+
+      // Track quiz completion with all answers
+      window.HLX.track('quiz_complete', {
+        email: answers.email,
+        nome: answers.nome,
+        estado: answers.estado,
+        peso: answers.peso,
+        altura: answers.altura,
+        sexo: answers.sexo,
+        preferencia: answers.preferenciaMedicacao,
+      });
+    }
+  }, [answers]);
+
   // Determina a preferência de medicação do usuário
   // Default is tirzepatida (mounjaro), unless user explicitly chose wegovy/semaglutida
   const preferenciaMedicacao = answers.preferenciaMedicacao || 'mounjaro';
   const isSemaglutida = preferenciaMedicacao === 'wegovy';
 
-  // Generate checkout URL with user data
-  const getCheckoutUrl = () => {
+  // Generate encrypted checkout URL
+  const handleCheckout = async () => {
     const baseUrl = 'https://www.helixonlabs.com/checkout';
 
     // Map medication preference to product ID
-    // Default is tirzepatida-60mg, unless user explicitly chose semaglutida/wegovy
     const productId = preferenciaMedicacao === 'wegovy' ? 'semaglutida-5mg' : 'tirzepatida-60mg';
 
     // Extract first name and last name from full name
@@ -36,7 +57,16 @@ export function ResultPage({ question }: ResultPageProps) {
     const firstName = answers.primeiroNome || nameParts[0] || '';
     const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
 
-    const params = new URLSearchParams({
+    // Track checkout click
+    if (typeof window !== 'undefined' && window.HLX) {
+      window.HLX.track('checkout_click', {
+        product: productId,
+        email: answers.email,
+      });
+    }
+
+    // Encrypt all checkout data
+    const checkoutData = {
       product: productId,
       nome: firstName,
       sobrenome: lastName,
@@ -49,13 +79,16 @@ export function ResultPage({ question }: ResultPageProps) {
       bairro: '',
       cidade: '',
       estado: answers.estado || '',
-    });
+    };
 
-    return `${baseUrl}?${params.toString()}`;
-  };
-
-  const handleCheckout = () => {
-    window.location.href = getCheckoutUrl();
+    try {
+      const encryptedData = await encryptCheckoutData(checkoutData);
+      window.location.href = `${baseUrl}?data=${encryptedData}`;
+    } catch {
+      // Fallback to unencrypted if encryption fails
+      const params = new URLSearchParams(checkoutData);
+      window.location.href = `${baseUrl}?${params.toString()}`;
+    }
   };
 
   const medicationInfo = isSemaglutida

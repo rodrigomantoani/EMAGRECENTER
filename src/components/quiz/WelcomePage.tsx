@@ -13,6 +13,14 @@ interface WelcomePageProps {
 export function WelcomePage({ question }: WelcomePageProps) {
   const { nextStep } = useQuiz();
 
+  const handleStart = () => {
+    // Track quiz start
+    if (typeof window !== 'undefined' && window.HLX) {
+      window.HLX.track('quiz_start');
+    }
+    nextStep();
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 sm:px-6 lg:px-8 pb-8 xl:pb-16 text-center">
       {/* Profile Image */}
@@ -82,7 +90,7 @@ export function WelcomePage({ question }: WelcomePageProps) {
       {/* CTA Button */}
       <div className="w-full max-w-xs sm:max-w-sm lg:max-w-md">
         <Button
-          onClick={nextStep}
+          onClick={handleStart}
           className="w-full bg-accent cursor-pointer hover:bg-accent/90 text-white font-bold py-6 text-base sm:text-lg rounded-lg shadow-lg transition-all hover:shadow-xl min-h-[56px]"
         >
           {question.buttonText || 'Verificar sua elegibilidade'}
