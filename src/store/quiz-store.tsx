@@ -1,8 +1,47 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, useRef, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useRef, ReactNode, useEffect } from 'react';
 import type { QuizData } from '@/types/quiz';
 import { quizSteps } from '@/data/quiz-steps';
+
+// LocalStorage key
+const STORAGE_KEY = 'emagrecenter-quiz-data';
+
+// Helper functions for localStorage
+function loadFromStorage(): { answers: QuizData; step: number } {
+  if (typeof window === 'undefined') return { answers: {}, step: 0 };
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const data = JSON.parse(stored);
+      return {
+        answers: data.answers || {},
+        step: data.step || 0,
+      };
+    }
+  } catch {
+    // Silently fail
+  }
+  return { answers: {}, step: 0 };
+}
+
+function saveToStorage(answers: QuizData, step: number) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, step }));
+  } catch {
+    // Silently fail
+  }
+}
+
+function clearStorage() {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Silently fail
+  }
+}
 
 // Helper para adaptar textos por gênero
 export interface GenderText {
@@ -17,6 +56,7 @@ interface QuizContextType {
   isLoading: boolean;
   isComplete: boolean;
   progress: number;
+  isHydrated: boolean;
 
   // Helpers de gênero
   isFemale: boolean;
@@ -27,6 +67,7 @@ interface QuizContextType {
   nextStep: () => void;
   prevStep: () => void;
   goToStep: (step: number) => void;
+  setInitialStep: (step: number) => void;
   setAnswer: <K extends keyof QuizData>(key: K, value: QuizData[K]) => void;
   setAnswers: (data: Partial<QuizData>) => void;
   setLoading: (loading: boolean) => void;
@@ -46,10 +87,28 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
   const [answers, setAnswersState] = useState<QuizData>({});
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   // Ref to access answers in callbacks
   const answersRef = useRef<QuizData>(answers);
   answersRef.current = answers;
+
+  // Load from localStorage on mount (client-side only)
+  useEffect(() => {
+    const stored = loadFromStorage();
+    if (Object.keys(stored.answers).length > 0) {
+      setAnswersState(stored.answers);
+      setCurrentStep(stored.step);
+    }
+    setIsHydrated(true);
+  }, []);
+
+  // Save to localStorage whenever answers or step changes
+  useEffect(() => {
+    if (isHydrated) {
+      saveToStorage(answers, currentStep);
+    }
+  }, [answers, currentStep, isHydrated]);
 
   const progress = Math.round((currentStep / (totalSteps - 1)) * 100);
 
@@ -108,6 +167,13 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
     }
   }, [totalSteps]);
 
+  // Set initial step (for URL navigation, doesn't trigger save)
+  const setInitialStep = useCallback((step: number) => {
+    if (step >= 0 && step < totalSteps) {
+      setCurrentStep(step);
+    }
+  }, [totalSteps]);
+
   const setAnswer = useCallback(<K extends keyof QuizData>(key: K, value: QuizData[K]) => {
     setAnswersState((prev) => ({ ...prev, [key]: value }));
   }, []);
@@ -129,6 +195,7 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
     setAnswersState({});
     setIsLoading(false);
     setIsComplete(false);
+    clearStorage();
   }, []);
 
   return (
@@ -140,12 +207,14 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
         isLoading,
         isComplete,
         progress,
+        isHydrated,
         isFemale,
         isMale,
         g,
         nextStep,
         prevStep,
         goToStep,
+        setInitialStep,
         setAnswer,
         setAnswers,
         setLoading,

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useEffect, Suspense, useState, useRef } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { QuizProvider, useQuiz } from '@/store/quiz-store';
 import { quizSteps, TOTAL_STEPS } from '@/data/quiz-steps';
 import { QuizProgress } from './QuizProgress';
@@ -57,9 +57,36 @@ const REGION_TO_STATE: Record<string, string> = {
   'Tocantins': 'TO',
 };
 
+function LoadingSpinner() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="w-10 h-10 border-4 border-accent border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
+}
+
 function QuizContent() {
-  const { currentStep, prevStep, answers, setAnswer } = useQuiz();
+  const { currentStep, prevStep, answers, setAnswer, setInitialStep, isHydrated } = useQuiz();
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  const [initialStepSet, setInitialStepSet] = useState(false);
+
+  // Store initial params (without step) to preserve them when updating URL
+  const initialParamsRef = useRef<string | null>(null);
+
+  // Set mounted after first render to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+
+    // Capture initial params (excluding step) once on mount
+    if (initialParamsRef.current === null) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete('step');
+      initialParamsRef.current = params.toString();
+    }
+  }, [searchParams]);
 
   // Read medication preference from URL query param
   useEffect(() => {
@@ -70,6 +97,39 @@ function QuizContent() {
       setAnswer('preferenciaMedicacao', 'wegovy');
     }
   }, [searchParams, answers.preferenciaMedicacao, setAnswer]);
+
+  // Read step from URL query param (only after hydration, once)
+  useEffect(() => {
+    if (!isHydrated || initialStepSet) return;
+    const stepParam = searchParams.get('step');
+    if (stepParam) {
+      const stepIndex = parseInt(stepParam, 10);
+      if (!isNaN(stepIndex) && stepIndex >= 0) {
+        setInitialStep(stepIndex);
+      }
+    }
+    setInitialStepSet(true);
+  }, [searchParams, setInitialStep, isHydrated, initialStepSet]);
+
+  // Update URL when step changes (after initial load)
+  useEffect(() => {
+    if (!mounted || !isHydrated || !initialStepSet) return;
+
+    // Use stored initial params instead of searchParams (which gets stale)
+    const params = new URLSearchParams(initialParamsRef.current || '');
+
+    // Only add step param if not on first step
+    if (currentStep > 0) {
+      params.set('step', currentStep.toString());
+    } else {
+      params.delete('step');
+    }
+
+    // Use replaceState to avoid adding to browser history on every step
+    const queryString = params.toString();
+    const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
+    window.history.replaceState(null, '', newUrl);
+  }, [currentStep, mounted, isHydrated, initialStepSet, pathname]);
 
   // Fetch user's state from IP on mount
   useEffect(() => {
@@ -102,6 +162,11 @@ function QuizContent() {
     };
   }, [answers.estado, setAnswer]);
   const step = quizSteps[currentStep];
+
+  // Wait for mount and hydration to complete before rendering to avoid hydration mismatch
+  if (!mounted || !isHydrated) {
+    return <LoadingSpinner />;
+  }
 
   if (!step) return null;
 
@@ -238,7 +303,7 @@ function QuizContent() {
 export function QuizContainer() {
   return (
     <QuizProvider totalSteps={TOTAL_STEPS}>
-      <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <Suspense fallback={<LoadingSpinner />}>
         <QuizContent />
       </Suspense>
     </QuizProvider>
