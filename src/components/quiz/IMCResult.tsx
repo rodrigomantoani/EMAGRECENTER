@@ -100,13 +100,21 @@ export function IMCResult({ question }: IMCResultProps) {
         </div>
 
         {/* IMC Bar */}
-        <div className="relative pt-8">
-          {/* Indicator - em cima da barra com pulse */}
+        <div className="relative">
+          {/* Background gradient bar */}
           <div
-            className="absolute -top-1 z-10"
+            className="h-4 rounded-full"
+            style={{
+              background: 'linear-gradient(to right, #3B82F6 0%, #22C55E 17%, #EAB308 33%, #F97316 50%, #EF4444 67%, #DC2626 100%)',
+            }}
+          />
+
+          {/* Indicator - centralizado em cima da barra */}
+          <div
+            className="absolute top-1/2 z-10"
             style={{
               left: `${getIMCPosition(imc)}%`,
-              transform: 'translateX(-50%)',
+              transform: 'translate(-50%, -50%)',
             }}
           >
             {/* Pulse ring */}
@@ -125,14 +133,6 @@ export function IMCResult({ question }: IMCResultProps) {
               style={{ borderColor: classification.color }}
             />
           </div>
-
-          {/* Background gradient bar */}
-          <div
-            className="h-4 rounded-full mt-2"
-            style={{
-              background: 'linear-gradient(to right, #3B82F6 0%, #22C55E 17%, #EAB308 33%, #F97316 50%, #EF4444 67%, #DC2626 100%)',
-            }}
-          />
 
           {/* Labels */}
           <div className="flex justify-between mt-3 text-[10px] text-muted-foreground">
