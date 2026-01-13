@@ -21,6 +21,7 @@ import { IMCResult } from './IMCResult';
 import { GoalWeightQuestion } from './GoalWeightQuestion';
 import { GoalDateQuestion } from './GoalDateQuestion';
 import { BirthDateQuestion } from './BirthDateQuestion';
+import { PregnancyQuestion } from './PregnancyQuestion';
 import Image from 'next/image';
 /* eslint-disable @next/next/no-img-element */
 
@@ -129,6 +130,8 @@ function QuizContent() {
         return <GoalDateQuestion question={question} />;
       case 'birth-date':
         return <BirthDateQuestion question={question} />;
+      case 'pregnancy-check':
+        return <PregnancyQuestion question={question} />;
       case 'loading':
         return <LoadingStep question={question} />;
       case 'result':

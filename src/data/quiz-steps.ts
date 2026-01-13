@@ -73,6 +73,20 @@ export const quizSteps: QuizStep[] = [
   },
 
   // ============================================
+  // 2.1. GRAVIDEZ - Apenas para mulheres
+  // ============================================
+  {
+    id: 'gravidez',
+    phase: 'onboarding',
+    question: {
+      id: 'gravidezAmamentacao',
+      type: 'pregnancy-check',
+      title: 'Você está grávida, amamentando ou tentando engravidar?',
+      helperText: 'O plano pode incluir medicamentos contraindicados para gravidez. Por isso, recomendamos métodos contraceptivos.',
+    },
+  },
+
+  // ============================================
   // 3. USO DE MEDICAMENTOS - Qualificação + Autoridade
   // ============================================
   {

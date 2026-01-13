@@ -19,7 +19,8 @@ export type QuestionType =
   | 'imc-result'
   | 'goal-weight'
   | 'goal-date'
-  | 'birth-date';
+  | 'birth-date'
+  | 'pregnancy-check';
 
 export interface QuestionOption {
   id: string;
@@ -146,6 +147,7 @@ export interface QuizData {
   primeiroNome?: string;
   dataNascimento?: string;
   sexo?: 'masculino' | 'feminino';
+  gravidezAmamentacao?: 'sim' | 'nao';
   altura?: number;
   peso?: number;
   maiorPeso?: number;

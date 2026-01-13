@@ -1,7 +1,8 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useRef, ReactNode } from 'react';
 import type { QuizData } from '@/types/quiz';
+import { quizSteps } from '@/data/quiz-steps';
 
 // Helper para adaptar textos por gênero
 export interface GenderText {
@@ -46,6 +47,10 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
+  // Ref to access answers in callbacks
+  const answersRef = useRef<QuizData>(answers);
+  answersRef.current = answers;
+
   const progress = Math.round((currentStep / (totalSteps - 1)) * 100);
 
   // Helpers de gênero
@@ -58,11 +63,31 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
   }, [isFemale]);
 
   const nextStep = useCallback(() => {
-    setCurrentStep((prev) => Math.min(prev + 1, totalSteps - 1));
+    setCurrentStep((prev) => {
+      let next = Math.min(prev + 1, totalSteps - 1);
+
+      // Skip pregnancy step for males
+      const nextStepData = quizSteps[next];
+      if (nextStepData?.id === 'gravidez' && answersRef.current.sexo === 'masculino') {
+        next = Math.min(next + 1, totalSteps - 1);
+      }
+
+      return next;
+    });
   }, [totalSteps]);
 
   const prevStep = useCallback(() => {
-    setCurrentStep((prev) => Math.max(prev - 1, 0));
+    setCurrentStep((prev) => {
+      let prevIndex = Math.max(prev - 1, 0);
+
+      // Skip pregnancy step for males when going back
+      const prevStepData = quizSteps[prevIndex];
+      if (prevStepData?.id === 'gravidez' && answersRef.current.sexo === 'masculino') {
+        prevIndex = Math.max(prevIndex - 1, 0);
+      }
+
+      return prevIndex;
+    });
   }, []);
 
   const goToStep = useCallback((step: number) => {
