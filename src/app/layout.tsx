@@ -35,10 +35,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <Script
-          src="https://hlx-tracker.pages.dev/hlx.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
