@@ -62,20 +62,12 @@ export function ResultPage({ question }: ResultPageProps) {
     ? {
         name: 'Semaglutida 5mg',
         subtitle: 'Do mesmo fabricante do Ozempic®',
-        originalPrice: 'R$ 699,99',
-        installments: '2x de',
-        installmentPrice: 'R$ 199,99',
-        totalPrice: 'R$ 399,99',
-        monthlyNote: 'no primeiro mês*',
+        price: 'R$ 399,99',
       }
     : {
         name: 'Tirzepatida 60mg',
         subtitle: 'Até 22,5% de perda de peso em estudos clínicos',
-        originalPrice: 'R$ 2.799,99',
-        installments: '2x de',
-        installmentPrice: 'R$ 899,99',
-        totalPrice: 'R$ 1.799,99',
-        monthlyNote: 'no primeiro mês*',
+        price: 'R$ 1.799,99',
       };
 
   const planBenefits = [
@@ -295,20 +287,12 @@ export function ResultPage({ question }: ResultPageProps) {
               <p className="text-sm text-accent font-medium mb-1">
                 10% off na primeira compra
               </p>
-              <p className="text-sm text-muted-foreground line-through">
-                {medicationInfo.originalPrice}
-              </p>
-              <div className="mt-2 flex items-baseline justify-center gap-2">
-                <span className="text-sm text-muted-foreground">{medicationInfo.installments}</span>
+              <div className="mt-2">
                 <span className="text-3xl sm:text-4xl font-bold text-primary">
-                  {medicationInfo.installmentPrice}
+                  {medicationInfo.price}
                 </span>
               </div>
-              <p className="text-sm text-muted-foreground">{medicationInfo.monthlyNote}</p>
               <p className="text-xs text-muted-foreground mt-2">
-                ou parcele em 12x sem juros
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
                 O preço da renovação varia com a dose prescrita
               </p>
             </div>
