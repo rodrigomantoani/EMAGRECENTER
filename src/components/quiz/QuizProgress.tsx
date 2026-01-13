@@ -21,7 +21,7 @@ export function QuizProgress() {
 
   return (
     <div className="bg-background">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+      <div className="max-w-[480px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
         <div className="flex items-center gap-3 sm:gap-4">
           <Progress value={visualProgress} className="flex-1 h-1.5 sm:h-2" />
           <span className="text-xs sm:text-sm text-muted-foreground font-medium min-w-[2.5rem] sm:min-w-[3rem] text-right">

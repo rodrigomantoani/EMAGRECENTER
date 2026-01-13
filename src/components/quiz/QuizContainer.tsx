@@ -153,7 +153,7 @@ function QuizContent() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[480px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16">
             {/* Back Button */}
             <div className="w-10">
@@ -206,7 +206,7 @@ function QuizContent() {
       {showProgress && <QuizProgress />}
 
       {/* Main Content */}
-      <main className="max-w-3xl mx-auto pt-4 sm:pt-6 lg:pt-8 xl:pb-16">
+      <main className="max-w-[480px] mx-auto pt-4 sm:pt-6 lg:pt-8 xl:pb-16">
         <div className="animate-in fade-in slide-in-from-right-4 duration-300">
           {renderQuestion()}
         </div>
@@ -214,7 +214,7 @@ function QuizContent() {
 
       {/* Footer - visible only on large desktop screens (1280px+) */}
       <footer className="hidden xl:block fixed bottom-0 left-0 right-0 py-3 bg-background/95 backdrop-blur border-t border-border/40">
-        <div className="max-w-3xl mx-auto px-8 flex items-center justify-between text-xs text-muted-foreground">
+        <div className="max-w-[480px] mx-auto px-8 flex items-center justify-between text-xs text-muted-foreground">
           <p>Suas informações são protegidas</p>
           <p>Atendimento 100% online</p>
         </div>
