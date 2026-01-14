@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Quiz EmagreCenter",
+  title: "Quiz EmagreCENTER",
   description: "Preencha o quiz e receba a indicação perfeita para emagrecer!",
 };
 

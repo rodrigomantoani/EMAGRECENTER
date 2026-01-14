@@ -269,7 +269,7 @@ function QuizContent() {
               <div className="flex flex-col items-center">
                 <Image
                   src="/logo.svg"
-                  alt="EmagreCenter"
+                  alt="EmagreCENTER"
                   width={160}
                   height={40}
                   className="w-40 h-10"

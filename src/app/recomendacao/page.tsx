@@ -51,7 +51,7 @@ function RecomendacaoContent() {
           question={{
             id: 'resultado',
             type: 'result',
-            title: 'Seu plano Emagrecenter',
+            title: 'Seu plano EmagreCENTER',
           }}
         />
       </main>

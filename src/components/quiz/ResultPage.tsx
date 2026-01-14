@@ -137,7 +137,7 @@ export function ResultPage({ question }: ResultPageProps) {
     { icon: '/images/house.png', title: 'Faça tudo sem sair de casa', badge: '100% digital' },
     { icon: '/images/bolt.png', title: 'Tratamento eficaz e seguro', badge: 'Até 12% menos peso em 5 meses' },
     { icon: '/images/dna.png', title: 'Satisfação comprovada', badge: '53% mais efetivo²' },
-    { icon: '/images/heart.png', title: 'Quem assina, ama a Emagrecenter', badge: 'Avaliação 9.2/10' },
+    { icon: '/images/heart.png', title: 'Quem assina, ama a EmagreCENTER', badge: 'Avaliação 9.2/10' },
   ];
 
   const howItWorks = [
@@ -243,7 +243,7 @@ export function ResultPage({ question }: ResultPageProps) {
         <div className="flex flex-col items-center">
           <img
             src="/logo.svg"
-            alt="EmagreCenter"
+            alt="EmagreCENTER"
             className="w-40 h-10"
           />
           <span className="text-[10px] sm:text-xs text-[#5A6754]/70 tracking-[0.2em] font-semibold -mt-0.5">
@@ -342,7 +342,7 @@ export function ResultPage({ question }: ResultPageProps) {
           Próximos passos
         </h2>
         <p className="text-sm sm:text-base text-muted-foreground mb-6">
-          A Emagrecenter gerencia todas as etapas do seu tratamento: prático e sem burocracia.
+          A EmagreCENTER gerencia todas as etapas do seu tratamento: prático e sem burocracia.
         </p>
 
         <div className="space-y-0">
@@ -385,8 +385,8 @@ export function ResultPage({ question }: ResultPageProps) {
 
         <div className="mt-4 space-y-3 text-xs text-muted-foreground">
           <p>*Se o médico não indicar um tratamento, <strong>seu pedido é cancelado e o valor é reembolsado.</strong></p>
-          <p>Lembrando que a decisão final é sempre médica, para garantir sua segurança. Na Emagrecenter, não incentivamos a automedicação.</p>
-          <p>Vendidos por farmácias credenciadas. A Emagrecenter faz a gestão da compra e entrega dos medicamentos.</p>
+          <p>Lembrando que a decisão final é sempre médica, para garantir sua segurança. Na EmagreCENTER, não incentivamos a automedicação.</p>
+          <p>Vendidos por farmácias credenciadas. A EmagreCENTER faz a gestão da compra e entrega dos medicamentos.</p>
         </div>
 
         {/* CTA Sticky */}
@@ -408,10 +408,10 @@ export function ResultPage({ question }: ResultPageProps) {
           SEU PLANO
         </p>
         <h2 className="text-xl sm:text-2xl font-heading font-bold text-primary mb-2">
-          Por que escolher a Emagrecenter?
+          Por que escolher a EmagreCENTER?
         </h2>
         <p className="text-sm sm:text-base text-muted-foreground mb-6">
-          Com a Emagrecenter, você tem tudo o que precisa em um só lugar com segurança e conveniência.
+          Com a EmagreCENTER, você tem tudo o que precisa em um só lugar com segurança e conveniência.
         </p>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-4">
@@ -491,7 +491,7 @@ export function ResultPage({ question }: ResultPageProps) {
                 <>
                   <div className="text-5xl sm:text-6xl font-bold text-purple-900 mb-2">6 a 14 KG</div>
                   <p className="text-sm text-purple-900/80 mb-4">
-                    Os membros da Emagrecenter perdem em média 6 a 14kg por mês
+                    Os membros da EmagreCENTER perdem em média 6 a 14kg por mês
                   </p>
                 </>
               );
@@ -590,7 +590,7 @@ export function ResultPage({ question }: ResultPageProps) {
           COM A EMAGRECENTER VOCÊ PODE MAIS
         </p>
         <h2 className="text-xl sm:text-2xl font-heading font-bold text-primary mb-6 text-center">
-          Veja como a Emagrecenter está transformando a vida das pessoas
+          Veja como a EmagreCENTER está transformando a vida das pessoas
         </h2>
 
         <div className="relative rounded-2xl overflow-hidden">
@@ -773,7 +773,7 @@ export function ResultPage({ question }: ResultPageProps) {
             Se ainda tiver dúvidas
           </h3>
           <p className="text-sm text-white/80 mb-6">
-            Ainda tem dúvidas? Fale com nosso time e saiba tudo sobre o Seu Plano Emagrecenter.
+            Ainda tem dúvidas? Fale com nosso time e saiba tudo sobre o Seu Plano EmagreCENTER.
           </p>
           <Button
             variant="outline"
@@ -791,10 +791,10 @@ export function ResultPage({ question }: ResultPageProps) {
       <section className="px-4 sm:px-6 lg:px-8 py-8 sm:py-10 bg-white">
         <div className="mb-8">
           <h3 className="text-lg font-bold text-primary mb-2">
-            Entenda o papel da Emagrecenter
+            Entenda o papel da EmagreCENTER
           </h3>
           <p className="text-sm text-muted-foreground mb-4">
-            A Emagrecenter cuida de toda a burocracia para que você possa focar somente no seu tratamento.
+            A EmagreCENTER cuida de toda a burocracia para que você possa focar somente no seu tratamento.
           </p>
           <ul className="space-y-2">
             {voyRole.map((item, index) => (

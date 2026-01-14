@@ -42,12 +42,12 @@ export const quizSteps: QuizStep[] = [
       id: 'welcome',
       type: 'welcome',
       profileImage: '/images/team-avatar.png',
-      subtitle: 'Time clínico Emagrecenter',
+      subtitle: 'Time clínico EmagreCENTER',
       title: 'Você está a 2 minutos de descobrir o tratamento que vai mudar sua vida',
       description: 'Responda algumas perguntas rápidas e um médico especialista vai analisar se você é elegível para o tratamento que já transformou a vida de milhares de pessoas.',
       socialProof: {
         rating: '4.9 estrelas',
-        text: 'que já alcançaram o peso dos sonhos com a EmagreCenter.',
+        text: 'que já alcançaram o peso dos sonhos com a EmagreCENTER.',
         highlight: '78.000 pessoas',
       },
       buttonText: 'Quero descobrir meu tratamento →',
@@ -261,7 +261,7 @@ export const quizSteps: QuizStep[] = [
       image: '/images/team-photo.png',
       badge: 'Dica: muita gente não sabe disso',
       title: 'Você pode pedir reembolso das consultas',
-      description: 'As consultas médicas da Emagrecenter podem ser reembolsadas pelo seu plano de saúde. Muitos pacientes recuperam até R$100 por mês. A gente te envia a nota fiscal certinha.',
+      description: 'As consultas médicas da EmagreCENTER podem ser reembolsadas pelo seu plano de saúde. Muitos pacientes recuperam até R$100 por mês. A gente te envia a nota fiscal certinha.',
       disclaimer: '*Reembolso depende da cobertura do seu plano',
       buttonText: 'Boa! Continuar →',
     },
@@ -623,7 +623,7 @@ export const quizSteps: QuizStep[] = [
     question: {
       id: 'resultado',
       type: 'result',
-      title: 'Seu plano Emagrecenter',
+      title: 'Seu plano EmagreCENTER',
     },
   },
 ];
