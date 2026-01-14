@@ -740,7 +740,7 @@ export function ResultPage({ question }: ResultPageProps) {
           </p>
           <Button
             variant="outline"
-            className="w-full max-w-xs mx-auto bg-white text-accent border-0 font-bold py-4 px-8 rounded-full hover:bg-white/90 min-h-[52px]"
+            className="w-full max-w-xs mx-auto bg-white text-accent border-0 font-bold py-4 px-8 rounded-full hover:bg-white/90 hover:text-accent min-h-[52px]"
           >
             <img src="/images/icons/whatsapp-green.svg" alt="" className="w-5 h-5 mr-2" />
             Fale com um especialista
