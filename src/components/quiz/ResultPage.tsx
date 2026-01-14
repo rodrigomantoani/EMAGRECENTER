@@ -19,20 +19,21 @@ export function ResultPage({ question }: ResultPageProps) {
   const [showFixedCta, setShowFixedCta] = useState(false);
   const whyChooseRef = useRef<HTMLElement>(null);
 
-  // Intersection Observer para mostrar CTA fixo quando chegar na seção "Por que escolher"
+  // Mostrar CTA fixo quando chegar na seção "Por que escolher" ou passar dela
+  // Esconder quando estiver acima da seção
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShowFixedCta(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
+    const handleScroll = () => {
+      if (!whyChooseRef.current) return;
 
-    if (whyChooseRef.current) {
-      observer.observe(whyChooseRef.current);
-    }
+      const rect = whyChooseRef.current.getBoundingClientRect();
+      // Mostrar quando o topo da seção atingir o topo da viewport (ou já passou)
+      setShowFixedCta(rect.top <= 100);
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Verificar estado inicial
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Determina a preferência de medicação do usuário
