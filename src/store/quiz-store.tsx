@@ -143,6 +143,11 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
         next = Math.min(next + 1, totalSteps - 1);
       }
 
+      // Track quiz step progression
+      if (typeof window !== 'undefined' && window.HLX) {
+        window.HLX.track('quiz_step', { step: next, from_step: prev });
+      }
+
       return next;
     });
   }, [totalSteps]);
