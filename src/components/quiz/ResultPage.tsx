@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { useQuiz } from '@/store/quiz-store';
 import type { Question } from '@/types/quiz';
@@ -16,6 +16,24 @@ export function ResultPage({ question }: ResultPageProps) {
   const { answers } = useQuiz();
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [showPreferenceModal, setShowPreferenceModal] = useState(false);
+  const [showFixedCta, setShowFixedCta] = useState(false);
+  const whyChooseRef = useRef<HTMLElement>(null);
+
+  // Intersection Observer para mostrar CTA fixo quando chegar na seção "Por que escolher"
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowFixedCta(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (whyChooseRef.current) {
+      observer.observe(whyChooseRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Determina a preferência de medicação do usuário
   // Default is tirzepatida (mounjaro), unless user explicitly chose wegovy/semaglutida
@@ -218,6 +236,22 @@ export function ResultPage({ question }: ResultPageProps) {
   return (
     <div className="flex flex-col pb-28">
       {/* ============================================ */}
+      {/* LOGO */}
+      {/* ============================================ */}
+      <section className="px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 text-center bg-background">
+        <div className="flex flex-col items-center">
+          <img
+            src="/logo.svg"
+            alt="EmagreCenter"
+            className="w-40 h-10"
+          />
+          <span className="text-[10px] sm:text-xs text-[#5A6754]/70 tracking-[0.2em] font-semibold -mt-0.5">
+            SEU OBJETIVO, MAIS RÁPIDO
+          </span>
+        </div>
+      </section>
+
+      {/* ============================================ */}
       {/* HERO - Título Principal Personalizado */}
       {/* ============================================ */}
       <section className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8 text-center bg-background">
@@ -368,7 +402,7 @@ export function ResultPage({ question }: ResultPageProps) {
       {/* ============================================ */}
       {/* POR QUE ESCOLHER */}
       {/* ============================================ */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 sm:py-10 bg-white">
+      <section ref={whyChooseRef} className="px-4 sm:px-6 lg:px-8 py-8 sm:py-10 bg-white">
         <p className="text-xs font-bold text-accent uppercase tracking-wider mb-2">
           SEU PLANO
         </p>
@@ -602,11 +636,13 @@ export function ResultPage({ question }: ResultPageProps) {
           <img src="/images/nutri-team.png" alt="Time de nutricionistas" className="w-full h-auto rounded-xl" />
         </div>
 
-        <div className="flex items-center gap-1 mb-6">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <img key={star} src="/images/icons/branded_rating_star_full.svg" alt="" className="w-4 h-4" />
-          ))}
-          <span className="text-sm text-muted-foreground ml-2">
+        <div className="flex flex-col items-center gap-1 mb-6">
+          <div className="flex gap-1">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <img key={star} src="/images/icons/branded_rating_star_full.svg" alt="" className="w-4 h-4" />
+            ))}
+          </div>
+          <span className="text-sm text-muted-foreground">
             Nossos nutricionistas são avaliados com <strong>4,98 de 5</strong>
           </span>
         </div>
@@ -801,7 +837,11 @@ export function ResultPage({ question }: ResultPageProps) {
       {/* ============================================ */}
       {/* CTA FINAL FIXO */}
       {/* ============================================ */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border p-4 shadow-lg z-50">
+      <div
+        className={`fixed bottom-0 left-0 right-0 bg-white border-t border-border p-4 shadow-lg z-50 transition-transform duration-300 ease-out ${
+          showFixedCta ? 'translate-y-0' : 'translate-y-full'
+        }`}
+      >
         <div className="max-w-[480px] mx-auto">
           <Button
             onClick={handleCheckout}

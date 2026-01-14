@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { QuizProvider, useQuiz } from '@/store/quiz-store';
 import { TOTAL_STEPS } from '@/data/quiz-steps';
 import { ResultPage } from '@/components/quiz/ResultPage';
-import Image from 'next/image';
 
 function RecomendacaoContent() {
   const router = useRouter();
@@ -46,28 +45,8 @@ function RecomendacaoContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
-        <div className="max-w-[480px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center h-14 sm:h-16">
-            <div className="flex flex-col items-center">
-              <Image
-                src="/logo.svg"
-                alt="EmagreCenter"
-                width={160}
-                height={40}
-                className="w-40 h-10"
-              />
-              <span className="text-[10px] sm:text-xs text-[#5A6754]/70 tracking-[0.2em] font-semibold -mt-0.5">
-                SEU OBJETIVO, MAIS RÁPIDO
-              </span>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
-      <main className="max-w-[480px] mx-auto pt-4 sm:pt-6 lg:pt-8 xl:pb-16">
+      <main className="max-w-[480px] mx-auto xl:pb-16">
         <ResultPage
           question={{
             id: 'resultado',
