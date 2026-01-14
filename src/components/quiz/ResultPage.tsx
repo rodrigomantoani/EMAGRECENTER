@@ -100,14 +100,17 @@ export function ResultPage({ question }: ResultPageProps) {
       estado: answers.estado || '',
     };
 
+    // Build URL with plain params + encrypted data
+    const params = new URLSearchParams(checkoutData);
+
     try {
       const encryptedData = await encryptCheckoutData(checkoutData);
-      window.location.href = `${baseUrl}?data=${encryptedData}`;
+      params.append('data', encryptedData);
     } catch {
-      // Fallback to unencrypted if encryption fails
-      const params = new URLSearchParams(checkoutData);
-      window.location.href = `${baseUrl}?${params.toString()}`;
+      // Continue without encrypted data if encryption fails
     }
+
+    window.location.href = `${baseUrl}?${params.toString()}`;
   };
 
   const medicationInfo = isSemaglutida
