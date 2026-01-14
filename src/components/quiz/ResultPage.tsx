@@ -89,7 +89,6 @@ export function ResultPage({ question }: ResultPageProps) {
       step: 'PAGAMENTO',
       status: 'current',
       title: 'O valor é bloqueado no seu cartão, não é cobrado.',
-      badge: 'Cancele quando quiser',
       icon: '/images/icons/card_purple.svg',
     },
     {
@@ -264,12 +263,6 @@ export function ResultPage({ question }: ResultPageProps) {
                   {medicationInfo.subtitle}
                 </p>
               </div>
-              <button
-                onClick={() => setShowPreferenceModal(true)}
-                className="text-accent text-sm font-medium hover:underline whitespace-nowrap"
-              >
-                Editar preferência
-              </button>
             </div>
           </div>
 
@@ -292,9 +285,6 @@ export function ResultPage({ question }: ResultPageProps) {
                   {medicationInfo.price}
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground mt-2">
-                O preço da renovação varia com a dose prescrita
-              </p>
             </div>
 
             {/* CTA Button */}
@@ -305,11 +295,6 @@ export function ResultPage({ question }: ResultPageProps) {
               Obter meu plano
             </Button>
 
-            {/* Flexibility note */}
-            <div className="flex items-center justify-center gap-2 mt-4 text-sm text-muted-foreground">
-              <img src="/images/icon-cancellation.svg" alt="" className="w-4 h-4" />
-              <span>Planos flexíveis: Cancele quando quiser</span>
-            </div>
           </div>
         </div>
       </section>
@@ -419,17 +404,6 @@ export function ResultPage({ question }: ResultPageProps) {
           </a>
         </div>
 
-        <div className="mt-4 p-4 bg-brown-stone rounded-xl">
-          <div className="flex items-center gap-3">
-            <img src="/images/icons/order_subscription.svg" alt="" className="w-6 h-6" />
-            <div>
-              <p className="text-sm font-bold text-primary">Uma assinatura flexível!</p>
-              <p className="text-xs text-muted-foreground">
-                Sua assinatura será renovada a cada mês. Você pode cancelar a renovação quando quiser.
-              </p>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* ============================================ */}
