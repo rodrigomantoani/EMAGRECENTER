@@ -71,16 +71,18 @@ export function GoalDateQuestion({ question }: GoalDateQuestionProps) {
           `}
         >
           <div className="flex items-center gap-3">
-            <div className={`
-              w-6 h-6 rounded-full border-2 flex items-center justify-center
-              ${hasEvent === true ? 'border-[#7CB342] bg-[#7CB342]' : 'border-gray-300'}
-            `}>
+            <span
+              className={`
+                inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-solid
+                ${hasEvent === true ? 'border-[#7CB342] bg-[#7CB342]' : 'border-gray-300 bg-white'}
+              `}
+            >
               {hasEvent === true && (
                 <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                 </svg>
               )}
-            </div>
+            </span>
             <div>
               <p className="font-medium text-primary">Sim, tenho uma data em mente</p>
               <p className="text-sm text-muted-foreground">Vou te ajudar a chegar lá a tempo</p>
@@ -99,16 +101,18 @@ export function GoalDateQuestion({ question }: GoalDateQuestionProps) {
           `}
         >
           <div className="flex items-center gap-3">
-            <div className={`
-              w-6 h-6 rounded-full border-2 flex items-center justify-center
-              ${hasEvent === false ? 'border-[#7CB342] bg-[#7CB342]' : 'border-gray-300'}
-            `}>
+            <span
+              className={`
+                inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-solid
+                ${hasEvent === false ? 'border-[#7CB342] bg-[#7CB342]' : 'border-gray-300 bg-white'}
+              `}
+            >
               {hasEvent === false && (
                 <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                 </svg>
               )}
-            </div>
+            </span>
             <div>
               <p className="font-medium text-primary">Não, só quero emagrecer</p>
               <p className="text-sm text-muted-foreground">Sem pressa, no meu ritmo</p>

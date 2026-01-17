@@ -151,21 +151,16 @@ export function PregnancyQuestion({ question }: PregnancyQuestionProps) {
               style={{ boxShadow: 'rgba(11, 59, 60, 0.05) 0px 2px 4px 0px' }}
             >
               {/* Radio Indicator */}
-              <div className="flex-shrink-0 mt-0.5">
-                <div
-                  className={`
-                    w-5 h-5 rounded-full border-2 flex items-center justify-center
-                    ${isSelected
-                      ? 'border-[var(--evergreen)]'
-                      : 'border-[var(--border)]'
-                    }
-                  `}
-                >
-                  {isSelected && (
-                    <div className="w-2.5 h-2.5 rounded-full bg-[var(--evergreen)]" />
-                  )}
-                </div>
-              </div>
+              <span
+                className={`
+                  flex-shrink-0 mt-0.5 inline-block w-5 h-5 rounded-full
+                  border-2 border-solid
+                  ${isSelected ? 'border-[#779d7c] bg-[#779d7c]' : 'border-[#dfe6e0] bg-white'}
+                `}
+                style={{
+                  boxShadow: isSelected ? 'inset 0 0 0 3px white' : 'none',
+                }}
+              />
 
               {/* Content */}
               <div className="flex-1 min-w-0">

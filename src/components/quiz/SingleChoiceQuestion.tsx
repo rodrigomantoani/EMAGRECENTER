@@ -47,31 +47,25 @@ export function SingleChoiceQuestion({ question }: SingleChoiceQuestionProps) {
               key={option.id}
               onClick={() => handleSelect(option.id)}
               className={`
-                flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg cursor-pointer transition-all
-                bg-white border-2
+                flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg cursor-pointer transition-colors
+                bg-white border-2 shadow-sm
                 ${isSelected
-                  ? 'border-[var(--evergreen)] shadow-[0_0_0_1px_var(--evergreen)]'
+                  ? 'border-[var(--evergreen)]'
                   : 'border-[var(--border)] hover:border-[var(--evergreen)]/50'
                 }
               `}
-              style={{ boxShadow: 'rgba(11, 59, 60, 0.05) 0px 2px 4px 0px' }}
             >
-              {/* Radio Indicator */}
-              <div className="flex-shrink-0 mt-0.5">
-                <div
-                  className={`
-                    w-5 h-5 rounded-full border-2 flex items-center justify-center
-                    ${isSelected
-                      ? 'border-[var(--evergreen)]'
-                      : 'border-[var(--border)]'
-                    }
-                  `}
-                >
-                  {isSelected && (
-                    <div className="w-2.5 h-2.5 rounded-full bg-[var(--evergreen)]" />
-                  )}
-                </div>
-              </div>
+              {/* Radio Indicator - usando span com pseudo-elemento para evitar interferência de CSS global */}
+              <span
+                className={`
+                  flex-shrink-0 mt-0.5 inline-block w-5 h-5 rounded-full
+                  border-2 border-solid
+                  ${isSelected ? 'border-[#779d7c] bg-[#779d7c]' : 'border-[#dfe6e0] bg-white'}
+                `}
+                style={{
+                  boxShadow: isSelected ? 'inset 0 0 0 3px white' : 'none',
+                }}
+              />
 
               {/* Icon (emoji) */}
               {option.icon && (
