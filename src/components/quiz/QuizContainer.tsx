@@ -76,6 +76,12 @@ function QuizContent() {
   // Store initial params (without step) to preserve them when updating URL
   const initialParamsRef = useRef<string | null>(null);
 
+  // Track if this is the first render to avoid pushing initial state
+  const isFirstRender = useRef(true);
+
+  // Track the last step we pushed to history to avoid duplicate pushes
+  const lastPushedStep = useRef<number | null>(null);
+
   // Set mounted after first render to avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
@@ -132,11 +138,49 @@ function QuizContent() {
       params.delete('step');
     }
 
-    // Use replaceState to avoid adding to browser history on every step
     const queryString = params.toString();
     const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
-    window.history.replaceState(null, '', newUrl);
-  }, [currentStep, mounted, isHydrated, initialStepSet, pathname, router]);
+
+    // On first render, use replaceState to set initial URL without adding history
+    // On subsequent renders, use pushState to add to browser history
+    if (isFirstRender.current) {
+      window.history.replaceState({ step: currentStep }, '', newUrl);
+      isFirstRender.current = false;
+      lastPushedStep.current = currentStep;
+    } else if (lastPushedStep.current !== currentStep) {
+      window.history.pushState({ step: currentStep }, '', newUrl);
+      lastPushedStep.current = currentStep;
+    }
+  }, [currentStep, mounted, isHydrated, initialStepSet, pathname, router, completeQuiz]);
+
+  // Listen for browser back/forward button
+  useEffect(() => {
+    if (!mounted || !isHydrated) return;
+
+    const handlePopState = (event: PopStateEvent) => {
+      // Get step from state or parse from URL
+      let targetStep = 0;
+
+      if (event.state?.step !== undefined) {
+        targetStep = event.state.step;
+      } else {
+        // Fallback: parse step from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const stepParam = urlParams.get('step');
+        if (stepParam) {
+          targetStep = parseInt(stepParam, 10);
+          if (isNaN(targetStep)) targetStep = 0;
+        }
+      }
+
+      // Update the quiz step without pushing new history
+      lastPushedStep.current = targetStep;
+      setInitialStep(targetStep);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [mounted, isHydrated, setInitialStep]);
 
   // Fetch user's state from IP on mount
   useEffect(() => {
