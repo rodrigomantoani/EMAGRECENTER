@@ -67,11 +67,23 @@ export function RadioCardQuestion({ question }: RadioCardQuestionProps) {
               {/* Image/Icon */}
               {option.image && (
                 <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden bg-[var(--mint-light)]">
-                  <img
-                    src={option.image}
-                    alt={option.title}
-                    className="w-full h-full object-contain p-2"
-                  />
+                  <picture>
+                    <source
+                      srcSet={option.image.replace(/\.(png|jpg|jpeg)$/, '.avif')}
+                      type="image/avif"
+                    />
+                    <source
+                      srcSet={option.image.replace(/\.(png|jpg|jpeg)$/, '.webp')}
+                      type="image/webp"
+                    />
+                    <img
+                      src={option.image}
+                      alt={option.imageAlt || option.title}
+                      width={option.imageWidth}
+                      height={option.imageHeight}
+                      className="w-full h-full object-contain p-2"
+                    />
+                  </picture>
                 </div>
               )}
 

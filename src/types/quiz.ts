@@ -40,6 +40,9 @@ export interface RadioCardOption {
   price?: string;
   priceNote?: string;
   image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   icon?: string;
 }
 
