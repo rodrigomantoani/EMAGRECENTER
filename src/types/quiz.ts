@@ -66,6 +66,7 @@ export interface OverviewSection {
   id: string;
   status: 'active' | 'pending' | 'completed';
   icon?: string;
+  image?: string;
   title: string;
   description: string;
   duration?: string;
