@@ -58,32 +58,34 @@ export function WelcomePage({ question }: WelcomePageProps) {
 
       {/* Social Proof */}
       {question.socialProof && (
-        <div className="flex flex-col items-center gap-2 mb-8 sm:mb-10">
-          {/* Stars */}
-          {question.socialProof.rating && (
-            <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star
-                  key={star}
-                  className="w-4 h-4 sm:w-5 sm:h-5 fill-[#FFB800] text-[#FFB800]"
-                />
-              ))}
-            </div>
-          )}
-          {/* Text */}
-          <p className="text-xs sm:text-sm text-muted-foreground max-w-xs sm:max-w-sm">
-            {question.socialProof.highlight ? (
-              <>
-                Junte-se às mais de{' '}
-                <span className="font-bold text-primary">
-                  {question.socialProof.highlight}
-                </span>{' '}
-                {question.socialProof.text}
-              </>
-            ) : (
-              question.socialProof.text
+        <div className="w-full max-w-xs sm:max-w-sm lg:max-w-md bg-[#EFEBE6] border border-[#E0DBD5] rounded-xl px-4 py-4 shadow-sm mb-8 sm:mb-10">
+          <div className="flex flex-col items-start gap-1.5">
+            {/* Stars */}
+            {question.socialProof.rating && (
+              <div className="flex gap-0.5">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star
+                    key={star}
+                    className="w-4 h-4 fill-[#FFB800] text-[#FFB800]"
+                  />
+                ))}
+              </div>
             )}
-          </p>
+            {/* Text */}
+            <p className="text-xs sm:text-sm text-muted-foreground text-left">
+              {question.socialProof.highlight ? (
+                <>
+                  Junte-se às mais de{' '}
+                  <span className="font-bold text-primary">
+                    {question.socialProof.highlight}
+                  </span>{' '}
+                  {question.socialProof.text}
+                </>
+              ) : (
+                question.socialProof.text
+              )}
+            </p>
+          </div>
         </div>
       )}
 
