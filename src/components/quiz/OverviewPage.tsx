@@ -15,14 +15,27 @@ export function OverviewPage({ question }: OverviewPageProps) {
   return (
     <div className="flex flex-col gap-6 sm:gap-8 px-4 sm:px-6 lg:px-8 pb-8">
       {/* Header */}
-      <div className="text-left space-y-2 sm:space-y-3">
+      <div className="text-center space-y-2 sm:space-y-3">
         <h1 className="text-xl sm:text-2xl lg:text-[28px] font-heading font-bold text-primary">
           {question.title}
         </h1>
+        {question.subtitle && (
+          <p className="text-sm sm:text-base text-muted-foreground">
+            {question.subtitle}
+          </p>
+        )}
       </div>
 
-      {/* Timeline Sections */}
-      <div className="flex flex-col">
+      {/* Section Label + Timeline */}
+      <div className="flex flex-col gap-3">
+        {question.tag && (
+          <p className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">
+            {question.tag}
+          </p>
+        )}
+
+        {/* Timeline Sections */}
+        <div className="flex flex-col">
         {question.overviewSections?.map((section, index) => {
           const isActive = section.status === 'active';
           const isLast = index === (question.overviewSections?.length || 0) - 1;
@@ -112,6 +125,7 @@ export function OverviewPage({ question }: OverviewPageProps) {
             </div>
           );
         })}
+        </div>
       </div>
 
       {/* Start Button */}
