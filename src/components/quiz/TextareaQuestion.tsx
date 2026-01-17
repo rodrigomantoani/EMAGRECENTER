@@ -58,7 +58,8 @@ export function TextareaQuestion({ question }: TextareaQuestionProps) {
             w-full px-4 py-3 sm:py-4 rounded-lg border-2 bg-white
             text-sm sm:text-base text-primary placeholder:text-muted-foreground/50
             focus:outline-none focus:border-[var(--evergreen)] transition-colors
-            resize-none border-[var(--border)]
+            border-[var(--border)]
+            ${question.fields?.[0]?.resizable ? 'resize-y min-h-[100px]' : 'resize-none'}
           `}
         />
       </div>

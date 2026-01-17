@@ -114,6 +114,7 @@ export interface InputField {
   helper?: string;
   required?: boolean;
   rows?: number; // Para textarea
+  resizable?: boolean; // Para textarea - permite redimensionar verticalmente
 }
 
 export interface ValidationRule {

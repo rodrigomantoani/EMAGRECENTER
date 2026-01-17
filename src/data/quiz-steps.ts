@@ -562,7 +562,33 @@ export const quizSteps: QuizStep[] = [
   },
 
   // ============================================
-  // 21. ALERGIAS
+  // 21. QUAIS MEDICAMENTOS (condicional - só se respondeu "sim")
+  // ============================================
+  {
+    id: 'quais-medicamentos',
+    phase: 'triagem-medica',
+    question: {
+      id: 'medicamentosRegulares',
+      type: 'textarea',
+      title: 'Quais medicamentos ou suplementos você toma?',
+      helperText: 'Liste todos, incluindo dose e modo de uso.',
+      fields: [
+        {
+          id: 'medicamentosRegulares',
+          label: 'Seus medicamentos/suplementos',
+          type: 'textarea',
+          placeholder: 'Ex: Losartana 50mg (1x ao dia), Vitamina D 2000UI (1x ao dia)...',
+          rows: 4,
+          required: true,
+          resizable: true,
+        },
+      ],
+      buttonText: 'Continuar',
+    },
+  },
+
+  // ============================================
+  // 22. ALERGIAS
   // ============================================
   {
     id: 'alergias-medicamentos',

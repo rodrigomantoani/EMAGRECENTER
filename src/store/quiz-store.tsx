@@ -141,6 +141,12 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
       // Skip medication preference step if already set via URL
       if (nextStepData?.id === 'preferencia-medicacao' && answersRef.current.preferenciaMedicacao) {
         next = Math.min(next + 1, totalSteps - 1);
+        nextStepData = quizSteps[next];
+      }
+
+      // Skip 'quais-medicamentos' step if user answered 'nao' to taking regular medications
+      if (nextStepData?.id === 'quais-medicamentos' && answersRef.current.tomaMedicamentoRegular === 'nao') {
+        next = Math.min(next + 1, totalSteps - 1);
       }
 
       // Track quiz step progression
@@ -165,6 +171,12 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
 
       // Skip pregnancy step for males when going back
       if (prevStepData?.id === 'gravidez' && answersRef.current.sexo === 'masculino') {
+        prevIndex = Math.max(prevIndex - 1, 0);
+        prevStepData = quizSteps[prevIndex];
+      }
+
+      // Skip 'quais-medicamentos' step if user answered 'nao' when going back
+      if (prevStepData?.id === 'quais-medicamentos' && answersRef.current.tomaMedicamentoRegular === 'nao') {
         prevIndex = Math.max(prevIndex - 1, 0);
       }
 
