@@ -670,7 +670,17 @@ export function ResultPage({ question }: ResultPageProps) {
         </p>
 
         <div className="mb-6">
-          <img src="/images/nutri-team.png" alt="Time de nutricionistas" className="w-full h-auto rounded-xl" />
+          <picture>
+            <source srcSet="/images/nutri-team.avif" type="image/avif" />
+            <source srcSet="/images/nutri-team.webp" type="image/webp" />
+            <img
+              src="/images/nutri-team.png"
+              alt="Time de nutricionistas"
+              width={250}
+              height={100}
+              className="w-[250px] h-[100px] object-cover rounded-xl mx-auto"
+            />
+          </picture>
         </div>
 
         <div className="flex flex-col items-center gap-1 mb-6">

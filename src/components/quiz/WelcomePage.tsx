@@ -25,14 +25,25 @@ export function WelcomePage({ question }: WelcomePageProps) {
     <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 sm:px-6 lg:px-8 pb-8 xl:pb-16 text-center">
       {/* Profile Image */}
       {question.profileImage && (
-        <div className="mb-4 sm:mb-6">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-[var(--evergreen)] to-[var(--charcoal)]">
-            <img
-              src={question.profileImage}
-              alt="Time clínico"
-              className="w-full h-full object-cover"
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
-            />
+        <div className="mb-2">
+          <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-[var(--evergreen)] to-[var(--charcoal)]">
+            <picture>
+              <source
+                srcSet={question.profileImage.replace(/\.(png|jpg|jpeg)$/, '.avif')}
+                type="image/avif"
+              />
+              <source
+                srcSet={question.profileImage.replace(/\.(png|jpg|jpeg)$/, '.webp')}
+                type="image/webp"
+              />
+              <img
+                src={question.profileImage}
+                alt="Time clínico"
+                width={80}
+                height={80}
+                className="w-full h-full object-cover"
+              />
+            </picture>
           </div>
         </div>
       )}

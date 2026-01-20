@@ -41,7 +41,7 @@ export const quizSteps: QuizStep[] = [
     question: {
       id: 'welcome',
       type: 'welcome',
-      profileImage: '/images/team-avatar.png',
+      profileImage: '/images/nutri.png',
       subtitle: 'Time clínico EmagreCENTER',
       title: 'Você está a 2 minutos de descobrir o tratamento que vai mudar sua vida',
       description: 'Responda algumas perguntas rápidas e um médico especialista vai analisar se você é elegível para o tratamento que já transformou a vida de milhares de pessoas.',
