@@ -48,13 +48,30 @@ export function BenefitCard({ question }: BenefitCardProps) {
 
       {/* Image */}
       {question.image && (
-        <div className="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56">
-          <div className="absolute inset-0 gradient-voy rounded-full" />
-          <img
-            src={question.image}
-            alt=""
-            className="absolute inset-0 w-full h-full object-contain p-4"
-          />
+        <div className="w-full max-w-sm sm:max-w-md">
+          {question.image.match(/\.(png|jpg|jpeg)$/i) ? (
+            <picture>
+              <source
+                srcSet={question.image.replace(/\.(png|jpg|jpeg)$/i, '.avif')}
+                type="image/avif"
+              />
+              <source
+                srcSet={question.image.replace(/\.(png|jpg|jpeg)$/i, '.webp')}
+                type="image/webp"
+              />
+              <img
+                src={question.image}
+                alt=""
+                className="w-full h-auto rounded-xl"
+              />
+            </picture>
+          ) : (
+            <img
+              src={question.image}
+              alt=""
+              className="w-full h-auto"
+            />
+          )}
         </div>
       )}
 

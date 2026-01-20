@@ -163,8 +163,7 @@ export const quizSteps: QuizStep[] = [
     question: {
       id: 'beneficio-gestao',
       type: 'benefit',
-      tag: '🎯 ZERO BUROCRACIA',
-      image: '/images/benefit-management.svg',
+      image: '/images/benefit-pratical.svg',
       title: 'Esqueça filas, receitas e farmácias',
       description: 'A gente cuida de TUDO: consulta online, receita digital, compra do medicamento e entrega na sua porta. Você só precisa tomar o remédio e ver os resultados aparecerem.',
       disclaimer: '*Medicação enviada apenas após prescrição médica',
@@ -181,8 +180,7 @@ export const quizSteps: QuizStep[] = [
     question: {
       id: 'beneficio-entrega',
       type: 'benefit',
-      tag: '📦 ENTREGA AUTOMÁTICA',
-      image: '/images/benefit-delivery.svg',
+      image: '/images/benefit-treatment.svg',
       title: 'Nunca mais fique sem remédio',
       bulletPoints: [
         { text: 'Renovação automática da receita', icon: 'check' },
@@ -203,7 +201,6 @@ export const quizSteps: QuizStep[] = [
     question: {
       id: 'beneficio-suporte',
       type: 'benefit',
-      tag: '💬 TIME DEDICADO A VOCÊ',
       image: '/images/benefit-support.svg',
       title: 'Você não vai estar sozinho nessa jornada',
       bulletPoints: [
@@ -263,7 +260,6 @@ export const quizSteps: QuizStep[] = [
     question: {
       id: 'reembolso',
       type: 'benefit',
-      tag: '💰 ECONOMIZE COM SEU PLANO',
       image: '/images/team-photo.png',
       badge: 'Dica: muita gente não sabe disso',
       title: 'Você pode pedir reembolso das consultas',
