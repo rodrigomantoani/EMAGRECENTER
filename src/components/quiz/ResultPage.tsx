@@ -101,8 +101,9 @@ export function ResultPage({ question }: ResultPageProps) {
       estado: answers.estado || '',
     };
 
-    // Build URL with plain params + encrypted data
+    // Build URL with plain params + encrypted data + source identifier
     const params = new URLSearchParams(checkoutData);
+    params.append('source', 'emagrecenter'); // Identifies traffic from quiz
 
     try {
       const encryptedData = await encryptCheckoutData(checkoutData);
