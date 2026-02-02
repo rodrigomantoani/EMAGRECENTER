@@ -65,7 +65,7 @@ export function ResultPage({ question }: ResultPageProps) {
 
   // Generate encrypted checkout URL
   const handleCheckout = async () => {
-    const baseUrl = 'https://www.helixonlabs.shop/checkout';
+    const baseUrl = 'https://www.helixonlabs.shop/checkout-quiz';
 
     
     // Map medication preference to product ID
