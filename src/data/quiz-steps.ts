@@ -252,20 +252,20 @@ export const quizSteps: QuizStep[] = [
   },
 
   // ============================================
-  // 10. REEMBOLSO - Redução de objeção de preço
+  // 10. GARANTIA - Redução de risco percebido
   // ============================================
   {
-    id: 'reembolso',
+    id: 'garantia',
     phase: 'beneficios',
     question: {
-      id: 'reembolso',
+      id: 'garantia',
       type: 'benefit',
       image: '/images/team-photo.png',
-      badge: 'Dica: muita gente não sabe disso',
-      title: 'Você pode pedir reembolso das consultas',
-      description: 'As consultas médicas da EmagreCENTER podem ser reembolsadas pelo seu plano de saúde. Muitos pacientes recuperam até R$100 por mês. A gente te envia a nota fiscal certinha.',
-      disclaimer: '*Reembolso depende da cobertura do seu plano',
-      buttonText: 'Boa! Continuar →',
+      badge: 'Garantia de satisfação',
+      title: 'Você está protegido pela nossa garantia',
+      description: 'Se o tratamento não funcionar conforme esperado, a gente devolve seu dinheiro. Simples assim. Queremos que você tenha confiança total no seu processo.',
+      disclaimer: '*Consulte termos e condições da garantia',
+      buttonText: 'Ótimo! Continuar →',
     },
   },
 
