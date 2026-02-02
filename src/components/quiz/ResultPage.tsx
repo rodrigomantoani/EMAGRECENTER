@@ -65,8 +65,9 @@ export function ResultPage({ question }: ResultPageProps) {
 
   // Generate encrypted checkout URL
   const handleCheckout = async () => {
-    const baseUrl = 'https://www.helixonlabs.com/checkout';
+    const baseUrl = 'https://www.helixonlabs.shop/checkout';
 
+    
     // Map medication preference to product ID
     const productId = preferenciaMedicacao === 'wegovy' ? 'semaglutida-5mg' : 'tirzepatida-60mg';
 
