@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useCallback, useRef, ReactNode, useEffect } from 'react';
 import type { QuizData } from '@/types/quiz';
 import { quizSteps } from '@/data/quiz-steps';
+import { analytics } from '@/lib/analytics';
 
 // LocalStorage key
 const STORAGE_KEY = 'emagrecenter-quiz-data';
@@ -198,8 +199,15 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
   }, [totalSteps]);
 
   const setAnswer = useCallback(<K extends keyof QuizData>(key: K, value: QuizData[K]) => {
-    setAnswersState((prev) => ({ ...prev, [key]: value }));
-  }, []);
+    setAnswersState((prev) => ({
+ ...prev, [key]: value }));
+    
+    // Track answer completion
+    const currentStepData = quizSteps[currentStep];
+    if (currentStepData) {
+      analytics.trackStepComplete(currentStepData.id, currentStep, value);
+    }
+  }, [currentStep]);
 
   const setAnswers = useCallback((data: Partial<QuizData>) => {
     setAnswersState((prev) => ({ ...prev, ...data }));
@@ -212,6 +220,18 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
   const completeQuiz = useCallback(() => {
     setIsComplete(true);
     setIsQuizCompleted(true);
+    
+    // Track quiz completion
+    analytics.trackQuizComplete(0, answersRef.current);
+    
+    // Identify user if email is available
+    if (answersRef.current.email) {
+      analytics.identifyUser(answersRef.current.email as string, {
+        name: answersRef.current.nome,
+        phone: answersRef.current.whatsapp,
+        state: answersRef.current.estado,
+      });
+    }
   }, []);
 
   const resetQuiz = useCallback(() => {

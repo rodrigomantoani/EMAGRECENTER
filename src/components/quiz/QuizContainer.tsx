@@ -5,6 +5,7 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { QuizProvider, useQuiz } from '@/store/quiz-store';
 import { quizSteps, TOTAL_STEPS } from '@/data/quiz-steps';
 import { QuizProgress } from './QuizProgress';
+import { analytics } from '@/lib/analytics';
 import { SingleChoiceQuestion } from './SingleChoiceQuestion';
 import { MultipleChoiceQuestion } from './MultipleChoiceQuestion';
 import { InputQuestion } from './InputQuestion';
@@ -212,7 +213,15 @@ function QuizContent() {
       clearTimeout(timeoutId);
     };
   }, [answers.estado, setAnswer]);
+
   const step = quizSteps[currentStep];
+
+  // Track step view
+  useEffect(() => {
+    if (!mounted || !isHydrated || !step) return;
+    
+    analytics.trackStepView(step.id, currentStep, step.phase);
+  }, [currentStep, mounted, isHydrated, step]);
 
   // Wait for mount and hydration to complete before rendering to avoid hydration mismatch
   if (!mounted || !isHydrated) {
