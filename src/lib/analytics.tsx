@@ -2,8 +2,20 @@
 
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
+import { useEffect } from 'react';
 
 export function PHProvider({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !posthog.__loaded) {
+      posthog.init('phc_PsTVdKT6JqHAcEiojPh7CQ5u0Vpbuq2xJvZZ6gpS0Zi', {
+        api_host: 'https://app.posthog.com',
+        person_profiles: 'identified_only',
+        capture_pageview: false,
+        capture_pageleave: true,
+      });
+    }
+  }, []);
+
   return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 }
 
