@@ -46,6 +46,12 @@ export default function RootLayout({
           src="https://hlx-tracker.pages.dev/hlx.js"
           strategy="afterInteractive"
         />
+        {/* Umami Analytics */}
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          strategy="afterInteractive"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

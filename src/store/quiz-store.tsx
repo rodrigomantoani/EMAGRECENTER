@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useCallback, useRef, ReactNode, useEffect } from 'react';
 import type { QuizData } from '@/types/quiz';
 import { quizSteps } from '@/data/quiz-steps';
-import { analytics } from '@/lib/analytics';
+import { analytics, umami } from '@/lib/analytics';
 
 // LocalStorage key
 const STORAGE_KEY = 'emagrecenter-quiz-data';
@@ -221,8 +221,9 @@ export function QuizProvider({ children, totalSteps }: QuizProviderProps) {
     setIsComplete(true);
     setIsQuizCompleted(true);
     
-    // Track quiz completion
+    // Track quiz completion (PostHog and Umami)
     analytics.trackQuizComplete(0, answersRef.current);
+    umami.trackQuizComplete(0, answersRef.current);
     
     // Identify user if email is available
     if (answersRef.current.email) {

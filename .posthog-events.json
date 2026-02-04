@@ -1,0 +1,65 @@
+[
+  {
+    "event": "quiz_started",
+    "description": "User clicks the 'start quiz' button on the welcome page to begin the eligibility questionnaire",
+    "file": "src/components/quiz/WelcomePage.tsx"
+  },
+  {
+    "event": "quiz_step_viewed",
+    "description": "User views a quiz step (already tracked via analytics.trackStepView)",
+    "file": "src/components/quiz/QuizContainer.tsx",
+    "status": "exists"
+  },
+  {
+    "event": "quiz_step_completed",
+    "description": "User completes a quiz step by answering a question (already tracked)",
+    "file": "src/store/quiz-store.tsx",
+    "status": "exists"
+  },
+  {
+    "event": "quiz_completed",
+    "description": "User completes the entire quiz and reaches the result page (already tracked)",
+    "file": "src/store/quiz-store.tsx",
+    "status": "exists"
+  },
+  {
+    "event": "checkout_initiated",
+    "description": "User clicks 'Obter meu plano' button to start checkout process - key conversion event",
+    "file": "src/components/quiz/ResultPage.tsx"
+  },
+  {
+    "event": "faq_expanded",
+    "description": "User expands a FAQ accordion to read more information on the result page",
+    "file": "src/components/quiz/ResultPage.tsx"
+  },
+  {
+    "event": "video_testimonial_clicked",
+    "description": "User clicks the play button on testimonial video thumbnail",
+    "file": "src/components/quiz/ResultPage.tsx"
+  },
+  {
+    "event": "whatsapp_contact_clicked",
+    "description": "User clicks the WhatsApp contact button to speak with a specialist",
+    "file": "src/components/quiz/ResultPage.tsx"
+  },
+  {
+    "event": "medication_preference_selected",
+    "description": "User selects their preferred medication type (tirzepatida or semaglutida)",
+    "file": "src/components/quiz/RadioCardQuestion.tsx"
+  },
+  {
+    "event": "goal_weight_set",
+    "description": "User sets their target weight goal in the goal weight picker",
+    "file": "src/components/quiz/GoalWeightQuestion.tsx"
+  },
+  {
+    "event": "goal_date_set",
+    "description": "User sets a target date for an important event (wedding, graduation, etc.)",
+    "file": "src/components/quiz/GoalDateQuestion.tsx"
+  },
+  {
+    "event": "imc_calculated",
+    "description": "User views their calculated BMI result after entering height and weight",
+    "file": "src/components/quiz/IMCResult.tsx"
+  }
+]

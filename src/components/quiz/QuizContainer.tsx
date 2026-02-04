@@ -5,7 +5,7 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { QuizProvider, useQuiz } from '@/store/quiz-store';
 import { quizSteps, TOTAL_STEPS } from '@/data/quiz-steps';
 import { QuizProgress } from './QuizProgress';
-import { analytics } from '@/lib/analytics';
+import { analytics, umami } from '@/lib/analytics';
 import { SingleChoiceQuestion } from './SingleChoiceQuestion';
 import { MultipleChoiceQuestion } from './MultipleChoiceQuestion';
 import { InputQuestion } from './InputQuestion';
@@ -216,12 +216,51 @@ function QuizContent() {
 
   const step = quizSteps[currentStep];
 
+  // Track time spent on each step for Umami step_leave tracking
+  const stepStartTimeRef = useRef<number>(0);
+  const lastTrackedStepRef = useRef<{ id: string; number: number } | null>(null);
+
   // Track step view
   useEffect(() => {
     if (!mounted || !isHydrated || !step) return;
     
+    // Track step leave for previous step (if any)
+    if (lastTrackedStepRef.current) {
+      const timeSpent = Math.floor((Date.now() - stepStartTimeRef.current) / 1000);
+      umami.trackStepLeave(
+        lastTrackedStepRef.current.id,
+        lastTrackedStepRef.current.number,
+        timeSpent
+      );
+    }
+    
+    // Track step view (PostHog and Umami)
     analytics.trackStepView(step.id, currentStep, step.phase);
+    umami.trackStepView(step.id, currentStep, step.phase);
+    
+    // Reset timer and save current step for tracking leave
+    stepStartTimeRef.current = Date.now();
+    lastTrackedStepRef.current = { id: step.id, number: currentStep };
   }, [currentStep, mounted, isHydrated, step]);
+
+  // Track step leave on page unload/close
+  useEffect(() => {
+    if (!mounted || !isHydrated) return;
+    
+    const handleBeforeUnload = () => {
+      if (lastTrackedStepRef.current) {
+        const timeSpent = Math.floor((Date.now() - stepStartTimeRef.current) / 1000);
+        umami.trackStepLeave(
+          lastTrackedStepRef.current.id,
+          lastTrackedStepRef.current.number,
+          timeSpent
+        );
+      }
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [mounted, isHydrated]);
 
   // Wait for mount and hydration to complete before rendering to avoid hydration mismatch
   if (!mounted || !isHydrated) {

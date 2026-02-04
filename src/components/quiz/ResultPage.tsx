@@ -8,6 +8,7 @@ import type { Question } from '@/types/quiz';
 import { ChevronDown, ChevronUp, Check, Play } from 'lucide-react';
 import { WeightLossChart } from '@/components/charts/WeightLossChart';
 import { encryptCheckoutData } from '@/lib/crypto';
+import { umami } from '@/lib/analytics';
 
 interface ResultPageProps {
   question: Question;
@@ -77,13 +78,20 @@ export function ResultPage({ question }: ResultPageProps) {
     const firstName = answers.primeiroNome || nameParts[0] || '';
     const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
 
-    // Track checkout click
+    // Track checkout click (HLX and Umami)
     if (typeof window !== 'undefined' && window.HLX) {
       window.HLX.track('checkout_click', {
         product: productId,
         email: answers.email,
       });
     }
+    
+    // Track checkout-quiz on Umami
+    umami.trackCheckoutQuiz(
+      productId,
+      answers.email as string,
+      medicationInfo.price
+    );
 
     // Encrypt all checkout data
     const checkoutData = {

@@ -4,14 +4,26 @@ import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
 import { useEffect } from 'react';
 
+// Umami type declaration
+declare global {
+  interface Window {
+    umami?: {
+      track: (eventName: string, eventData?: Record<string, unknown>) => void;
+    };
+  }
+}
+
 export function PHProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window !== 'undefined' && !posthog.__loaded) {
-      posthog.init('phc_PsTVdKT6JqHAcEiojPh7CQ5u0Vpbuq2xJvZZ6gpS0Zi', {
-        api_host: 'https://app.posthog.com',
+      posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+        api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
         person_profiles: 'identified_only',
         capture_pageview: false,
         capture_pageleave: true,
+        defaults: '2025-11-30',
+        capture_exceptions: true,
+        debug: process.env.NODE_ENV === 'development',
       });
     }
   }, []);
@@ -106,5 +118,58 @@ export const analytics = {
   // Identify user
   identifyUser: (email: string, properties?: Record<string, any>) => {
     posthog.identify(email, properties);
+  },
+};
+
+// Umami Analytics helper functions
+export const umami = {
+  // Track quiz step view (page arrive)
+  trackStepView: (stepId: string, stepNumber: number, stepPhase: string) => {
+    if (typeof window !== 'undefined' && window.umami) {
+      window.umami.track('quiz_step_view', {
+        step_id: stepId,
+        step_number: stepNumber,
+        step_phase: stepPhase,
+      });
+    }
+  },
+
+  // Track quiz step leave (page leave)
+  trackStepLeave: (stepId: string, stepNumber: number, timeSpent: number) => {
+    if (typeof window !== 'undefined' && window.umami) {
+      window.umami.track('quiz_step_leave', {
+        step_id: stepId,
+        step_number: stepNumber,
+        time_spent_seconds: timeSpent,
+      });
+    }
+  },
+
+  // Track quiz completion (end of quiz)
+  trackQuizComplete: (totalTime: number, answers: Record<string, unknown>) => {
+    if (typeof window !== 'undefined' && window.umami) {
+      window.umami.track('quiz_complete', {
+        total_time_seconds: totalTime,
+        total_steps: Object.keys(answers).length,
+      });
+    }
+  },
+
+  // Track checkout-quiz (when user clicks checkout)
+  trackCheckoutQuiz: (productId: string, email?: string, price?: string) => {
+    if (typeof window !== 'undefined' && window.umami) {
+      window.umami.track('checkout_quiz', {
+        product: productId,
+        email: email || '',
+        price: price || '',
+      });
+    }
+  },
+
+  // Track custom event
+  track: (eventName: string, eventData?: Record<string, unknown>) => {
+    if (typeof window !== 'undefined' && window.umami) {
+      window.umami.track(eventName, eventData);
+    }
   },
 };
