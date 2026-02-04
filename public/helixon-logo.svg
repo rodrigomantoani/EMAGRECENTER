@@ -1,3 +1,28 @@
-<svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <text x="0" y="24" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#5A6754">Helixon</text>
+<svg width="240" height="64" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Medical Cross Icon -->
+  <path d="M28 12H36V20H44V12H52V20H60V28H52V36H60V44H52V52H44V44H36V52H28V44H20V36H28V28H20V20H28V12Z" stroke="#1A1A1A" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- HELIXON Text -->
+  <g transform="translate(75, 20)">
+    <!-- H -->
+    <path d="M0 0V24M0 12H8M8 0V24" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- E -->
+    <path d="M16 0H26M16 0V24M16 12H24M16 24H26" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- L -->
+    <path d="M34 0V24M34 24H44" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- I -->
+    <path d="M52 0V24" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- X -->
+    <path d="M60 0L72 24M72 0L60 24" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- O -->
+    <circle cx="86" cy="12" r="10" stroke="#1A1A1A" stroke-width="3" fill="none"/>
+    
+    <!-- N -->
+    <path d="M104 24V0M104 0L116 24M116 24V0" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
 </svg>
