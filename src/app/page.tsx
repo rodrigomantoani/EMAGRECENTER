@@ -71,28 +71,28 @@ export default function Home() {
       </div>
 
       {/* HERO Section */}
-      <section className="relative min-h-[100vh] md:min-h-[85vh] flex items-center justify-center px-4 pt-24 pb-16 md:pt-20 md:pb-12 overflow-hidden">
+      <section className="relative min-h-[100vh] md:min-h-[85vh] flex items-center justify-center px-4 pt-16 pb-8 md:pt-20 md:pb-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-gray-50"></div>
         <div className="absolute top-20 right-0 w-64 h-64 md:w-96 md:h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-56 h-56 md:w-80 md:h-80 bg-teal-50/50 rounded-full blur-3xl"></div>
 
         <div className="relative z-10 max-w-6xl mx-auto w-full">
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-12 items-center">
             {/* Left - Content */}
             <div className="text-center md:text-left w-full order-2 md:order-1">
-              <h1 className="text-3xl sm:text-4xl md:text-[2.5rem] lg:text-5xl font-extrabold text-gray-900 leading-tight mb-5">
+              <h1 className="text-3xl sm:text-4xl md:text-[2.5rem] lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
                 Controle seu apetite e emagreça com{' '}
                 <span className="text-teal-500">HELIXON</span>
               </h1>
 
-              <p className="text-base md:text-lg text-gray-600 mb-7 max-w-lg mx-auto md:mx-0 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 mb-5 max-w-lg mx-auto md:mx-0 leading-relaxed">
                 Tirzepatida 60mg para saciedade prolongada e controle do apetite por até 12 semanas.
               </p>
 
               {/* Price Block */}
-              <div className="mb-7 md:mb-8">
+              <div className="mb-5 md:mb-8">
                 {/* Promo Badge */}
-                <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1.5 rounded-full mb-4 shadow-md">
+                <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1.5 rounded-full mb-3 shadow-md">
                   <i className="ri-flashlight-fill text-sm"></i>
                   <span className="text-xs font-bold">15% OFF Exclusivo Online</span>
                 </div>
@@ -164,7 +164,7 @@ export default function Home() {
 
             {/* Right - Product Image */}
             <div className="order-1 md:order-2 flex justify-center w-full">
-              <div className="relative w-[260px] h-[310px] sm:w-[300px] sm:h-[360px] md:w-[380px] md:h-[450px]">
+              <div className="relative w-[280px] h-[330px] sm:w-[320px] sm:h-[380px] md:w-[400px] md:h-[470px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-100/40 to-transparent rounded-3xl"></div>
                 <img
                   src="https://readdy.ai/api/search-image?query=professional%20woman%20holding%20turquoise%20HELIXON%20branded%20pharmaceutical%20product%20box%2C%20smiling%20confidently%2C%20modern%20clean%20background%2C%20natural%20lighting%2C%20health%20and%20wellness%20lifestyle%20photography%2C%20premium%20product%20presentation%2C%20authentic%20real%20person%20holding%20medicine%20box%2C%20commercial%20advertising%20style%2C%20high%20quality%20ecommerce%20photo&width=380&height=440&seq=helixon-woman-holding-box-v1&orientation=portrait"
