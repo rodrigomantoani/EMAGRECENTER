@@ -71,35 +71,35 @@ export default function Home() {
       </div>
 
       {/* HERO Section */}
-      <section className="relative min-h-screen md:min-h-[85vh] flex items-center justify-center px-4 pt-20 md:pt-16 pb-12 md:pb-8 overflow-hidden">
+      <section className="relative min-h-screen md:min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center px-4 pt-20 md:pt-24 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-gray-50"></div>
         <div className="absolute top-20 right-0 w-64 h-64 md:w-96 md:h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-56 h-56 md:w-80 md:h-80 bg-teal-50/50 rounded-full blur-3xl"></div>
 
-        <div className="relative z-10 max-w-6xl mx-auto w-full">
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-16 items-center">
             {/* Left - Content */}
-            <div className="text-center md:text-left w-full order-2 md:order-1">
-              <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl font-extrabold text-gray-900 leading-[1.15] mb-4">
+            <div className="text-center md:text-left w-full order-2 md:order-1 md:py-8">
+              <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 leading-[1.15] mb-5 md:mb-6">
                 Controle seu apetite e emagreça com{' '}
                 <span className="text-teal-500">HELIXON</span>
               </h1>
 
-              <p className="text-base md:text-lg text-gray-600 mb-6 max-w-lg mx-auto md:mx-0 leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-6 md:mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
                 Tirzepatida 60mg para saciedade prolongada e controle do apetite por até 12 semanas.
               </p>
 
               {/* Price Block */}
-              <div className="mb-6">
+              <div className="mb-6 md:mb-8">
                 <div className="flex items-baseline justify-center md:justify-start gap-2">
-                  <span className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900">R$ 1.799</span>
+                  <span className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-gray-900">R$ 1.799</span>
                 </div>
-                <p className="text-xs sm:text-sm text-gray-500 mt-2 px-4 md:px-0">12 semanas de tratamento (5mg/semana) • Envio liofilizado • Frete grátis</p>
+                <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-2 px-4 md:px-0">12 semanas de tratamento (5mg/semana) • Envio liofilizado • Frete grátis</p>
               </div>
 
               <a
                 href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
-                className="inline-block w-full max-w-xs md:w-auto bg-teal-500 hover:bg-teal-600 text-white text-base md:text-lg font-bold px-8 md:px-10 py-4 rounded-full shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
+                className="inline-block w-full max-w-xs md:w-auto bg-teal-500 hover:bg-teal-600 text-white text-base md:text-lg font-bold px-8 md:px-12 py-4 md:py-5 rounded-full shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
               >
                 Comprar agora
               </a>
@@ -155,14 +155,14 @@ export default function Home() {
             </div>
 
             {/* Right - Product Image */}
-            <div className="order-1 md:order-2 flex justify-center w-full">
-              <div className="relative w-[240px] h-[290px] sm:w-[280px] sm:h-[340px] md:w-[340px] md:h-[400px] lg:w-[380px] lg:h-[440px]">
+            <div className="order-1 md:order-2 flex justify-center md:justify-end w-full">
+              <div className="relative w-[240px] h-[290px] sm:w-[280px] sm:h-[340px] md:w-[400px] md:h-[470px] lg:w-[450px] lg:h-[530px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-100/40 to-transparent rounded-3xl"></div>
                 <img
-                  src="https://readdy.ai/api/search-image?query=professional%20woman%20holding%20turquoise%20HELIXON%20branded%20pharmaceutical%20product%20box%2C%20smiling%20confidently%2C%20modern%20clean%20background%2C%20natural%20lighting%2C%20health%20and%20wellness%20lifestyle%20photography%2C%20premium%20product%20presentation%2C%20authentic%20real%20person%20holding%20medicine%20box%2C%20commercial%20advertising%20style%2C%20high%20quality%20ecommerce%20photo&width=380&height=440&seq=helixon-woman-holding-box-v1&orientation=portrait"
+                  src="https://readdy.ai/api/search-image?query=professional%20woman%20holding%20turquoise%20HELIXON%20branded%20pharmaceutical%20product%20box%2C%20smiling%20confidently%2C%20modern%20clean%20background%2C%20natural%20lighting%2C%20health%20and%20wellness%20lifestyle%20photography%2C%20premium%20product%20presentation%2C%20authentic%20real%20person%20holding%20medicine%20box%2C%20commercial%20advertising%20style%2C%20high%20quality%20ecommerce%20photo&width=450&height=530&seq=helixon-woman-holding-box-v1&orientation=portrait"
                   alt="HELIXON Tirzepatida 60mg - Mulher segurando a caixa do produto"
                   title="HELIXON Tirzepatida 60mg produto premium"
-                  className="relative z-10 w-full h-full object-contain object-top rounded-2xl"
+                  className="relative z-10 w-full h-full object-contain object-center rounded-2xl"
                 />
               </div>
             </div>
