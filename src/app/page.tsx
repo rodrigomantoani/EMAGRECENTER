@@ -91,7 +91,14 @@ export default function Home() {
 
               {/* Price Block */}
               <div className="mb-6 md:mb-8">
-                <div className="flex items-baseline justify-center md:justify-start gap-2">
+                {/* Promo Badge */}
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-400 text-gray-900 px-4 py-1.5 rounded-full mb-3">
+                  <i className="ri-percent-line text-base font-bold"></i>
+                  <span className="text-sm font-bold">15% OFF comprando pelo site</span>
+                </div>
+                
+                <div className="flex items-baseline justify-center md:justify-start gap-3">
+                  <span className="text-xl sm:text-2xl md:text-2xl text-gray-400 line-through">R$ 2.116</span>
                   <span className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-gray-900">R$ 1.799</span>
                 </div>
                 <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-2 px-4 md:px-0">12 semanas de tratamento (5mg/semana) • Envio liofilizado • Frete grátis</p>
@@ -159,7 +166,7 @@ export default function Home() {
               <div className="relative w-[240px] h-[290px] sm:w-[280px] sm:h-[340px] md:w-[400px] md:h-[470px] lg:w-[450px] lg:h-[530px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-100/40 to-transparent rounded-3xl"></div>
                 <img
-                  src="https://readdy.ai/api/search-image?query=professional%20woman%20holding%20turquoise%20HELIXON%20branded%20pharmaceutical%20product%20box%2C%20smiling%20confidently%2C%20modern%20clean%20background%2C%20natural%20lighting%2C%20health%20and%20wellness%20lifestyle%20photography%2C%20premium%20product%20presentation%2C%20authentic%20real%20person%20holding%20medicine%20box%2C%20commercial%20advertising%20style%2C%20high%20quality%20ecommerce%20photo&width=450&height=530&seq=helixon-woman-holding-box-v1&orientation=portrait"
+                  src="https://readdy.ai/api/search-image?query=professional%20woman%20holding%20turquoise%20HELIXON%20branded%20pharmaceutical%20product%20box%2C%20smiling%20confidently%2C%20modern%20clean%20background%2C%20natural%20lighting%2C%20health%20and%20wellness%20lifestyle%20photography%2C%20premium%20product%20presentation%2C%20authentic%20real%20person%20holding%20medicine%20box%2C%20commercial%20advertising%20style%2C%20high%20quality%20ecommerce%20photo&width=380&height=440&seq=helixon-woman-holding-box-v1&orientation=portrait"
                   alt="HELIXON Tirzepatida 60mg - Mulher segurando a caixa do produto"
                   title="HELIXON Tirzepatida 60mg produto premium"
                   className="relative z-10 w-full h-full object-contain object-center rounded-2xl"
@@ -234,7 +241,11 @@ export default function Home() {
             />
             <FaqItem
               question="Qual o prazo de entrega?"
-              answer="O prazo varia de acordo com sua regiao, geralmente entre 5 a 15 dias uteis. Voce recebera o codigo de rastreamento assim que o pedido for despachado."
+              answer="Enviamos seu pedido em ate 24 horas apos a confirmacao do pagamento. O codigo de rastreamento e enviado automaticamente para acompanhar sua entrega. A entrega varia entre 5 a 15 dias uteis dependendo da sua regiao."
+            />
+            <FaqItem
+              question="E se houver problema com a entrega?"
+              answer="Sua tranquilidade e nossa prioridade. Em caso de extravio ou qualquer problema no recebimento, enviamos um novo produto sem nenhum custo adicional para voce. Entre em contato conosco e resolveremos imediatamente."
             />
           </div>
         </div>
@@ -243,36 +254,79 @@ export default function Home() {
       {/* CTA FINAL Section */}
       <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-teal-500 to-teal-600">
         <div className="max-w-2xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-1.5 rounded-full mb-4">
+            <i className="ri-percent-line text-base font-bold"></i>
+            <span className="text-sm font-bold">15% OFF exclusivo online</span>
+          </div>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">
             Comece agora com HELIXON
           </h2>
           <p className="text-sm md:text-base text-teal-100 mb-2">Tirzepatida 60mg • 12 semanas</p>
-          <p className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6">R$ 1.799</p>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="text-lg md:text-xl text-teal-200 line-through">R$ 2.116</span>
+            <p className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">R$ 1.799</p>
+          </div>
           <a
             href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
             className="inline-block w-full max-w-sm md:w-auto bg-white hover:bg-gray-50 text-teal-600 text-base md:text-lg font-bold px-10 md:px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
           >
-            Comprar agora
+            Garantir meu desconto
           </a>
-          <p className="text-xs md:text-sm text-teal-200 mt-4">Frete grátis • Envio discreto • Alta pureza</p>
+          <p className="text-xs md:text-sm text-teal-200 mt-4">Frete grátis • Envio em 24h • Reenvio garantido</p>
         </div>
       </section>
 
       {/* DISCLAIMER Footer */}
-      <footer className="bg-gray-50 py-8 px-4">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-5">
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-6 h-6 bg-teal-500 rounded-md flex items-center justify-center">
-                <i className="ri-capsule-fill text-sm text-white"></i>
+      <footer className="bg-gray-50 py-10 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {/* Brand */}
+            <div className="text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-2 mb-3">
+                <div className="w-6 h-6 bg-teal-500 rounded-md flex items-center justify-center">
+                  <i className="ri-capsule-fill text-sm text-white"></i>
+                </div>
+                <span className="text-base font-bold text-gray-900">HELIXON</span>
               </div>
-              <span className="text-base font-bold text-gray-900">
-                HELIXON
-              </span>
+              <p className="text-xs text-gray-500">Tirzepatida de alta pureza para controle de peso</p>
+            </div>
+
+            {/* Contato */}
+            <div className="text-center md:text-left">
+              <h3 className="text-sm font-bold text-gray-900 mb-3">Contato</h3>
+              <div className="space-y-2">
+                <a
+                  href="https://wa.me/5511920835004"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center md:justify-start gap-2 text-xs text-gray-600 hover:text-teal-600 transition-colors"
+                >
+                  <i className="ri-whatsapp-line text-base text-green-600"></i>
+                  <span>+55 11 92083-5004</span>
+                </a>
+                <a
+                  href="mailto:contato@helixonlabs.com"
+                  className="flex items-center justify-center md:justify-start gap-2 text-xs text-gray-600 hover:text-teal-600 transition-colors"
+                >
+                  <i className="ri-mail-line text-base text-teal-600"></i>
+                  <span>contato@helixonlabs.com</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Garantias */}
+            <div className="text-center md:text-left">
+              <h3 className="text-sm font-bold text-gray-900 mb-3">Garantias</h3>
+              <div className="space-y-1 text-xs text-gray-600">
+                <p>✓ Envio em até 24h</p>
+                <p>✓ Código de rastreio</p>
+                <p>✓ Reenvio grátis se houver problema</p>
+                <p>✓ Frete grátis Brasil</p>
+              </div>
             </div>
           </div>
 
-          <div className="text-center text-xs text-gray-400">
+          <div className="border-t border-gray-200 pt-6 text-center text-xs text-gray-400">
             <p>&copy; 2025 HELIXON. Todos os direitos reservados.</p>
             <p className="mt-2">
               <a
