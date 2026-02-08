@@ -71,43 +71,43 @@ export default function Home() {
       </div>
 
       {/* HERO Section */}
-      <section className="relative min-h-screen md:min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center px-4 pt-20 md:pt-24 pb-12 md:pb-16 overflow-hidden">
+      <section className="relative min-h-screen md:min-h-[75vh] flex items-center justify-center px-4 pt-20 md:pt-24 pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-gray-50"></div>
         <div className="absolute top-20 right-0 w-64 h-64 md:w-96 md:h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-56 h-56 md:w-80 md:h-80 bg-teal-50/50 rounded-full blur-3xl"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-16 items-center">
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-10 items-center">
             {/* Left - Content */}
-            <div className="text-center md:text-left w-full order-2 md:order-1 md:py-8">
-              <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 leading-[1.15] mb-5 md:mb-6">
+            <div className="text-center md:text-left w-full order-2 md:order-1">
+              <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
                 Controle seu apetite e emagreça com{' '}
                 <span className="text-teal-500">HELIXON</span>
               </h1>
 
-              <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-6 md:mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 mb-6 max-w-lg mx-auto md:mx-0 leading-relaxed">
                 Tirzepatida 60mg para saciedade prolongada e controle do apetite por até 12 semanas.
               </p>
 
               {/* Price Block */}
-              <div className="mb-6 md:mb-8 relative">
+              <div className="mb-6 md:mb-8">
                 {/* Promo Badge */}
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-5 py-2 rounded-full mb-4 shadow-lg animate-pulse">
-                  <i className="ri-flashlight-fill text-lg"></i>
-                  <span className="text-sm font-bold uppercase">Exclusivo Site: 15% OFF</span>
+                <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 rounded-full mb-3 shadow-md">
+                  <i className="ri-flashlight-fill text-sm"></i>
+                  <span className="text-xs font-bold">15% OFF Exclusivo Online</span>
                 </div>
                 
-                <div className="flex items-baseline justify-center md:justify-start gap-3 mb-1">
-                  <span className="text-xl sm:text-2xl md:text-2xl text-gray-400 line-through">R$ 1.799</span>
-                  <span className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-teal-600">R$ 1.529</span>
+                <div className="flex items-baseline justify-center md:justify-start gap-2 mb-1">
+                  <span className="text-lg sm:text-xl text-gray-400 line-through">R$ 1.799</span>
+                  <span className="text-4xl sm:text-5xl md:text-5xl font-extrabold text-gray-900">R$ 1.529</span>
                 </div>
-                <p className="text-xs sm:text-sm text-green-600 font-semibold mb-2 px-4 md:px-0">✓ Você economiza R$ 270 comprando online</p>
-                <p className="text-xs sm:text-sm md:text-base text-gray-500 px-4 md:px-0">12 semanas de tratamento (5mg/semana) • Envio liofilizado • Frete grátis</p>
+                <p className="text-xs sm:text-sm text-green-600 font-semibold mb-2 px-4 md:px-0">✓ Economize R$ 270</p>
+                <p className="text-xs sm:text-sm text-gray-600 px-4 md:px-0">12 semanas • Envio liofilizado • Frete grátis</p>
               </div>
 
               <a
                 href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg&cupom=VX7-R4KN9"
-                className="inline-block w-full max-w-xs md:w-auto bg-teal-500 hover:bg-teal-600 text-white text-base md:text-lg font-bold px-8 md:px-12 py-4 md:py-5 rounded-full shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
+                className="inline-block w-full max-w-xs md:w-auto bg-teal-500 hover:bg-teal-600 text-white text-base font-bold px-10 py-4 rounded-full shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
               >
                 Comprar agora
               </a>
@@ -163,8 +163,8 @@ export default function Home() {
             </div>
 
             {/* Right - Product Image */}
-            <div className="order-1 md:order-2 flex justify-center md:justify-end w-full">
-              <div className="relative w-[240px] h-[290px] sm:w-[280px] sm:h-[340px] md:w-[400px] md:h-[470px] lg:w-[450px] lg:h-[530px]">
+            <div className="order-1 md:order-2 flex justify-center w-full">
+              <div className="relative w-[240px] h-[290px] sm:w-[280px] sm:h-[340px] md:w-[360px] md:h-[420px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-100/40 to-transparent rounded-3xl"></div>
                 <img
                   src="https://readdy.ai/api/search-image?query=professional%20woman%20holding%20turquoise%20HELIXON%20branded%20pharmaceutical%20product%20box%2C%20smiling%20confidently%2C%20modern%20clean%20background%2C%20natural%20lighting%2C%20health%20and%20wellness%20lifestyle%20photography%2C%20premium%20product%20presentation%2C%20authentic%20real%20person%20holding%20medicine%20box%2C%20commercial%20advertising%20style%2C%20high%20quality%20ecommerce%20photo&width=380&height=440&seq=helixon-woman-holding-box-v1&orientation=portrait"
@@ -255,9 +255,9 @@ export default function Home() {
       {/* CTA FINAL Section */}
       <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-teal-500 to-teal-600">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-5 py-2 rounded-full mb-4 shadow-xl animate-pulse">
-            <i className="ri-flashlight-fill text-lg"></i>
-            <span className="text-sm font-bold uppercase">Exclusivo Site: 15% OFF</span>
+          <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1 rounded-full mb-4 shadow-md">
+            <i className="ri-flashlight-fill text-sm"></i>
+            <span className="text-xs font-bold">15% OFF Exclusivo Online</span>
           </div>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">
             Comece agora com HELIXON
