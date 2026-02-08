@@ -37,7 +37,7 @@ export default function Home() {
   }, []);
 
   const goToCheckout = () => {
-    window.location.href = 'https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg';
+    window.location.href = 'https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg&cupom=VX7-R4KN9';
   };
 
   return (
@@ -58,7 +58,7 @@ export default function Home() {
             </span>
           </div>
           <a
-            href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
+            href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg&cupom=VX7-R4KN9"
             className={`text-sm font-semibold px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap cursor-pointer ${
               isScrolled
                 ? 'bg-teal-500 text-white hover:bg-teal-600'
@@ -106,7 +106,7 @@ export default function Home() {
               </div>
 
               <a
-                href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
+                href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg&cupom=VX7-R4KN9"
                 className="inline-block w-full max-w-xs md:w-auto bg-teal-500 hover:bg-teal-600 text-white text-base md:text-lg font-bold px-8 md:px-12 py-4 md:py-5 rounded-full shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
               >
                 Comprar agora
@@ -241,7 +241,7 @@ export default function Home() {
               answer="Sim! Oferecemos opcoes de parcelamento no cartao de credito. Confira as condicoes disponiveis no checkout."
             />
             <FaqItem
-              question="Qual o prazo de entrega?"
+              question="Qual o prazo de envio?"
               answer="Enviamos seu pedido em ate 24 horas apos a confirmacao do pagamento. O codigo de rastreamento e enviado automaticamente para acompanhar sua entrega. A entrega varia entre 5 a 15 dias uteis dependendo da sua regiao."
             />
             <FaqItem
@@ -271,7 +271,7 @@ export default function Home() {
             <p className="text-sm text-teal-100 font-semibold">Economize R$ 270 agora</p>
           </div>
           <a
-            href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
+            href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg&cupom=VX7-R4KN9"
             className="inline-block w-full max-w-sm md:w-auto bg-white hover:bg-gray-50 text-teal-600 text-base md:text-lg font-bold px-10 md:px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
           >
             Garantir meu desconto de 15%
@@ -359,7 +359,7 @@ export default function Home() {
               <p className="text-lg font-extrabold text-gray-900">R$ 1.799</p>
             </div>
             <a
-              href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
+              href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg&cupom=VX7-R4KN9"
               className="bg-teal-500 hover:bg-teal-600 text-white text-sm font-bold px-6 py-3 rounded-full shadow-lg whitespace-nowrap cursor-pointer"
             >
               Comprar agora
