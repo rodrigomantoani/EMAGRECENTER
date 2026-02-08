@@ -71,7 +71,7 @@ export default function Home() {
       </div>
 
       {/* HERO Section */}
-      <section className="relative min-h-[100vh] md:min-h-[85vh] flex items-center justify-center px-4 pt-16 pb-8 md:pt-20 md:pb-12 overflow-hidden">
+      <section className="relative px-4 pt-16 pb-8 md:pt-20 md:pb-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-gray-50"></div>
         <div className="absolute top-20 right-0 w-64 h-64 md:w-96 md:h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-56 h-56 md:w-80 md:h-80 bg-teal-50/50 rounded-full blur-3xl"></div>
