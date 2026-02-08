@@ -90,18 +90,19 @@ export default function Home() {
               </p>
 
               {/* Price Block */}
-              <div className="mb-6 md:mb-8">
+              <div className="mb-6 md:mb-8 relative">
                 {/* Promo Badge */}
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-400 text-gray-900 px-4 py-1.5 rounded-full mb-3">
-                  <i className="ri-percent-line text-base font-bold"></i>
-                  <span className="text-sm font-bold">15% OFF comprando pelo site</span>
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-5 py-2 rounded-full mb-4 shadow-lg animate-pulse">
+                  <i className="ri-flashlight-fill text-lg"></i>
+                  <span className="text-sm font-bold uppercase">Exclusivo Site: 15% OFF</span>
                 </div>
                 
-                <div className="flex items-baseline justify-center md:justify-start gap-3">
-                  <span className="text-xl sm:text-2xl md:text-2xl text-gray-400 line-through">R$ 2.116</span>
-                  <span className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-gray-900">R$ 1.799</span>
+                <div className="flex items-baseline justify-center md:justify-start gap-3 mb-1">
+                  <span className="text-xl sm:text-2xl md:text-2xl text-gray-400 line-through">R$ 1.799</span>
+                  <span className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-teal-600">R$ 1.529</span>
                 </div>
-                <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-2 px-4 md:px-0">12 semanas de tratamento (5mg/semana) • Envio liofilizado • Frete grátis</p>
+                <p className="text-xs sm:text-sm text-green-600 font-semibold mb-2 px-4 md:px-0">✓ Você economiza R$ 270 comprando online</p>
+                <p className="text-xs sm:text-sm md:text-base text-gray-500 px-4 md:px-0">12 semanas de tratamento (5mg/semana) • Envio liofilizado • Frete grátis</p>
               </div>
 
               <a
@@ -254,23 +255,26 @@ export default function Home() {
       {/* CTA FINAL Section */}
       <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-teal-500 to-teal-600">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-1.5 rounded-full mb-4">
-            <i className="ri-percent-line text-base font-bold"></i>
-            <span className="text-sm font-bold">15% OFF exclusivo online</span>
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-5 py-2 rounded-full mb-4 shadow-xl animate-pulse">
+            <i className="ri-flashlight-fill text-lg"></i>
+            <span className="text-sm font-bold uppercase">Exclusivo Site: 15% OFF</span>
           </div>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">
             Comece agora com HELIXON
           </h2>
           <p className="text-sm md:text-base text-teal-100 mb-2">Tirzepatida 60mg • 12 semanas</p>
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="text-lg md:text-xl text-teal-200 line-through">R$ 2.116</span>
-            <p className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">R$ 1.799</p>
+          <div className="flex flex-col items-center gap-1 mb-6">
+            <div className="flex items-center gap-3">
+              <span className="text-lg md:text-xl text-teal-200 line-through">R$ 1.799</span>
+              <p className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">R$ 1.529</p>
+            </div>
+            <p className="text-sm text-teal-100 font-semibold">Economize R$ 270 agora</p>
           </div>
           <a
             href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
             className="inline-block w-full max-w-sm md:w-auto bg-white hover:bg-gray-50 text-teal-600 text-base md:text-lg font-bold px-10 md:px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
           >
-            Garantir meu desconto
+            Garantir meu desconto de 15%
           </a>
           <p className="text-xs md:text-sm text-teal-200 mt-4">Frete grátis • Envio em 24h • Reenvio garantido</p>
         </div>
