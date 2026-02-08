@@ -16,7 +16,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
           <i className={`ri-arrow-down-s-line text-lg text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>
         </div>
       </button>
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40' : 'max-h-0'}`}>
+      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
         <p className="px-4 pb-4 text-sm text-gray-600 leading-relaxed">{answer}</p>
       </div>
     </div>
@@ -71,16 +71,16 @@ export default function Home() {
       </div>
 
       {/* HERO Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center px-4 pt-16 pb-8 overflow-hidden">
+      <section className="relative min-h-screen md:min-h-[85vh] flex items-center justify-center px-4 pt-20 md:pt-16 pb-12 md:pb-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-gray-50"></div>
-        <div className="absolute top-20 right-0 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-50/50 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-0 w-64 h-64 md:w-96 md:h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-56 h-56 md:w-80 md:h-80 bg-teal-50/50 rounded-full blur-3xl"></div>
 
         <div className="relative z-10 max-w-6xl mx-auto w-full">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-12 items-center">
             {/* Left - Content */}
-            <div className="text-center md:text-left order-2 md:order-1">
-              <h1 className="text-3xl md:text-[2.75rem] font-extrabold text-gray-900 leading-tight mb-4">
+            <div className="text-center md:text-left w-full order-2 md:order-1">
+              <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl font-extrabold text-gray-900 leading-[1.15] mb-4">
                 Controle seu apetite e emagreça com{' '}
                 <span className="text-teal-500">HELIXON</span>
               </h1>
@@ -91,21 +91,21 @@ export default function Home() {
 
               {/* Price Block */}
               <div className="mb-6">
-                <div className="inline-flex items-baseline gap-2">
-                  <span className="text-4xl md:text-5xl font-extrabold text-gray-900">R$ 1.799</span>
+                <div className="flex items-baseline justify-center md:justify-start gap-2">
+                  <span className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900">R$ 1.799</span>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">12 semanas de tratamento (5mg/semana) • Envio liofilizado • Frete grátis</p>
+                <p className="text-xs sm:text-sm text-gray-500 mt-2 px-4 md:px-0">12 semanas de tratamento (5mg/semana) • Envio liofilizado • Frete grátis</p>
               </div>
 
               <a
                 href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
-                className="inline-block bg-teal-500 hover:bg-teal-600 text-white text-base font-bold px-10 py-4 rounded-full shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 transform hover:scale-[1.03] whitespace-nowrap cursor-pointer"
+                className="inline-block w-full max-w-xs md:w-auto bg-teal-500 hover:bg-teal-600 text-white text-base md:text-lg font-bold px-8 md:px-10 py-4 rounded-full shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
               >
                 Comprar agora
               </a>
 
               {/* Micro Benefits */}
-              <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-5 text-sm text-gray-500">
+              <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-4 md:gap-5 text-xs sm:text-sm text-gray-500">
                 <div className="flex items-center gap-1.5">
                   <i className="ri-shield-check-line text-teal-500 text-base"></i>
                   <span>Alta pureza</span>
@@ -122,9 +122,9 @@ export default function Home() {
 
               {/* Trust Badges */}
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 md:flex md:flex-wrap justify-center md:justify-start gap-3">
                   <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
-                    <div className="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full">
+                    <div className="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full flex-shrink-0">
                       <i className="ri-lock-line text-green-600 text-sm"></i>
                     </div>
                     <div>
@@ -133,7 +133,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
-                    <div className="w-8 h-8 flex items-center justify-center bg-teal-100 rounded-full">
+                    <div className="w-8 h-8 flex items-center justify-center bg-teal-100 rounded-full flex-shrink-0">
                       <i className="ri-bank-card-line text-teal-600 text-sm"></i>
                     </div>
                     <div>
@@ -142,7 +142,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
-                    <div className="w-8 h-8 flex items-center justify-center bg-amber-100 rounded-full">
+                    <div className="w-8 h-8 flex items-center justify-center bg-amber-100 rounded-full flex-shrink-0">
                       <i className="ri-medal-line text-amber-600 text-sm"></i>
                     </div>
                     <div>
@@ -155,8 +155,8 @@ export default function Home() {
             </div>
 
             {/* Right - Product Image */}
-            <div className="order-1 md:order-2 flex justify-center">
-              <div className="relative w-[280px] h-[340px] md:w-[380px] md:h-[440px]">
+            <div className="order-1 md:order-2 flex justify-center w-full">
+              <div className="relative w-[240px] h-[290px] sm:w-[280px] sm:h-[340px] md:w-[340px] md:h-[400px] lg:w-[380px] lg:h-[440px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-100/40 to-transparent rounded-3xl"></div>
                 <img
                   src="https://readdy.ai/api/search-image?query=professional%20woman%20holding%20turquoise%20HELIXON%20branded%20pharmaceutical%20product%20box%2C%20smiling%20confidently%2C%20modern%20clean%20background%2C%20natural%20lighting%2C%20health%20and%20wellness%20lifestyle%20photography%2C%20premium%20product%20presentation%2C%20authentic%20real%20person%20holding%20medicine%20box%2C%20commercial%20advertising%20style%2C%20high%20quality%20ecommerce%20photo&width=380&height=440&seq=helixon-woman-holding-box-v1&orientation=portrait"
@@ -171,45 +171,45 @@ export default function Home() {
       </section>
 
       {/* COMO FUNCIONA Section */}
-      <section className="py-10 px-4 bg-white">
-        <div className="max-w-3xl mx-auto text-center">
-          <h4 className="text-lg font-bold text-gray-900 mb-6">
+      <section className="py-12 md:py-16 px-4 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-8 md:mb-10">
             <a href="#como-funciona" id="como-funciona" className="text-gray-900 no-underline">
               Como funciona?
             </a>
-          </h4>
+          </h2>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
             <div className="text-center">
-              <div className="w-11 h-11 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                <span className="text-base font-bold text-white">1</span>
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-lg md:text-xl font-bold text-white">1</span>
               </div>
-              <p className="text-sm text-gray-700 font-medium">Reduz o apetite</p>
+              <p className="text-sm md:text-base text-gray-700 font-medium">Reduz o apetite</p>
             </div>
             <div className="text-center">
-              <div className="w-11 h-11 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                <span className="text-base font-bold text-white">2</span>
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-lg md:text-xl font-bold text-white">2</span>
               </div>
-              <p className="text-sm text-gray-700 font-medium">Aumenta a saciedade</p>
+              <p className="text-sm md:text-base text-gray-700 font-medium">Aumenta a saciedade</p>
             </div>
             <div className="text-center">
-              <div className="w-11 h-11 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                <span className="text-base font-bold text-white">3</span>
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-lg md:text-xl font-bold text-white">3</span>
               </div>
-              <p className="text-sm text-gray-700 font-medium">Otimiza o metabolismo</p>
+              <p className="text-sm md:text-base text-gray-700 font-medium">Otimiza o metabolismo</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-10 px-4 bg-gray-50">
+      <section className="py-12 md:py-16 px-4 bg-gray-50">
         <div className="max-w-3xl mx-auto">
-          <h4 className="text-lg font-bold text-gray-900 mb-6 text-center">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
             <a href="#faq" id="faq" className="text-gray-900 no-underline">
               Perguntas Frequentes
             </a>
-          </h4>
+          </h2>
 
           <div className="space-y-3">
             <FaqItem
@@ -241,20 +241,20 @@ export default function Home() {
       </section>
 
       {/* CTA FINAL Section */}
-      <section className="py-12 px-4 bg-gradient-to-br from-teal-500 to-teal-600">
+      <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-teal-500 to-teal-600">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">
             Comece agora com HELIXON
           </h2>
-          <p className="text-base text-teal-100 mb-2">Tirzepatida 60mg • 12 semanas</p>
-          <p className="text-3xl font-extrabold text-white mb-6">R$ 1.799</p>
+          <p className="text-sm md:text-base text-teal-100 mb-2">Tirzepatida 60mg • 12 semanas</p>
+          <p className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6">R$ 1.799</p>
           <a
             href="https://helixonlabs.shop/checkout-quiz?product=tirzepatida-60mg"
-            className="inline-block bg-white hover:bg-gray-50 text-teal-600 text-base font-bold px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-[1.03] whitespace-nowrap cursor-pointer"
+            className="inline-block w-full max-w-sm md:w-auto bg-white hover:bg-gray-50 text-teal-600 text-base md:text-lg font-bold px-10 md:px-12 py-4 rounded-full shadow-xl transition-all duration-300 transform hover:scale-[1.03] cursor-pointer"
           >
             Comprar agora
           </a>
-          <p className="text-xs text-teal-200 mt-4">Frete grátis • Envio discreto • Alta pureza</p>
+          <p className="text-xs md:text-sm text-teal-200 mt-4">Frete grátis • Envio discreto • Alta pureza</p>
         </div>
       </section>
 
