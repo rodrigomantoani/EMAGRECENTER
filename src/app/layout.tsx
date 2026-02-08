@@ -1,24 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { PHProvider } from "@/lib/analytics";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "Quiz EmagreCENTER",
-  description: "Preencha o quiz e receba a indicação perfeita para emagrecer!",
+  title: "HELIXON Tirzepatida 60mg - Controle do Apetite e Emagrecimento",
+  description: "HELIXON Tirzepatida 60mg ajuda a reduzir o apetite, aumentar a saciedade e acelerar a perda de peso. 12 semanas de tratamento com frete grátis. R$ 1.799",
 };
 
 export default function RootLayout({
@@ -27,8 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
+        {/* Remix Icon */}
+        <link
+          href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+          rel="stylesheet"
+        />
         {process.env.NODE_ENV === "development" && (
           <Script
             src="//unpkg.com/react-grab/dist/index.global.js"
@@ -54,7 +55,8 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
+        style={{ fontFamily: 'var(--font-inter), Inter, sans-serif' }}
       >
         <PHProvider>
           {children}
