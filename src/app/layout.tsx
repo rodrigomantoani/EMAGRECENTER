@@ -12,12 +12,13 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+const UMAMI_WEBSITE_ID_EXPECTED = "01a9a1d1-d503-437e-9e4c-e2d74bc2a892";
 const UMAMI_WEBSITE_ID =
-  process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ||
-  "01a9a1d1-d503-437e-9e4c-e2d74bc2a892";
+  process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID === UMAMI_WEBSITE_ID_EXPECTED
+    ? process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
+    : UMAMI_WEBSITE_ID_EXPECTED;
 
-const UMAMI_DOMAINS =
-  process.env.NEXT_PUBLIC_UMAMI_DOMAINS || "quiz.emagrecenters.com.br";
+const UMAMI_DOMAINS = "quiz.emagrecenters.com.br";
 
 export const metadata: Metadata = {
   title: "HELIXON Tirzepatida 60mg - Controle do Apetite e Emagrecimento",
