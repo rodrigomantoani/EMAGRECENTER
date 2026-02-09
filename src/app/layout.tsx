@@ -12,6 +12,13 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+const UMAMI_WEBSITE_ID =
+  process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ||
+  "01a9a1d1-d503-437e-9e4c-e2d74bc2a892";
+
+const UMAMI_DOMAINS =
+  process.env.NEXT_PUBLIC_UMAMI_DOMAINS || "quiz.emagrecenters.com.br";
+
 export const metadata: Metadata = {
   title: "HELIXON Tirzepatida 60mg - Controle do Apetite e Emagrecimento",
   description: "HELIXON Tirzepatida 60mg ajuda a reduzir o apetite, aumentar a saciedade e acelerar a perda de peso. 12 semanas de tratamento com frete grátis. R$ 1.799",
@@ -50,7 +57,8 @@ export default function RootLayout({
         {/* Umami Analytics */}
         <Script
           src="https://cloud.umami.is/script.js"
-          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          data-website-id={UMAMI_WEBSITE_ID}
+          data-domains={UMAMI_DOMAINS}
           strategy="afterInteractive"
         />
       </head>
